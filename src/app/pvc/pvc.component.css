@@ -1,0 +1,457 @@
+.main {
+    background-color: rgb(239,239,239);
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    margin-top: 1.2em;
+    -webkit-box-shadow: 3px 4px 10px 0px rgba(163,164,166,1);
+    -moz-box-shadow: 3px 4px 10px 0px rgba(163,164,166,1);
+    box-shadow: 3px 4px 10px 0px rgba(163,164,166,1);
+    margin-bottom: 1.5em;
+}
+.tipMere {
+    margin-left: auto;
+    margin-right: auto;
+    border-right: 1px solid white;
+}
+.tipMere input[type=radio]{
+    display: inline-block;
+    margin: 0.6em 0.4em 0.6em 1em;
+    transform: scale(1.5, 1.5);
+    -moz-transform: scale(1.5, 1.5);
+    -ms-transform: scale(1.5, 1.5);
+    -webkit-transform: scale(1.5, 1.5);
+    -o-transform: scale(1.5, 1.5);
+    accent-color: rgb(187,30,16)
+}
+/* .sirVis {
+    margin-bottom: 0.2em;
+    margin-top: 0.2em;
+} */
+.sirVis input[type='number'] {
+    -moz-appearance:text;
+}
+.sirVis input::-webkit-outer-spin-button,
+.sirVis input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+.sirVis label {
+    padding: 0.5em 1em;
+    font-size: 1em;
+}
+.sirVisInput {
+    width: 5em;
+    padding: 0.2em;
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+.sirVisInput:focus {
+    border: 1px solid steelblue;
+    border-radius: 5px;
+    outline: none;
+    resize: none;
+    background-color: white;
+}
+.sirVis input::placeholder, .kolicina input::placeholder {
+    color: transparent;
+}
+.kolicina {
+    margin-bottom: 1.2em;
+    padding-left: 1em;
+}
+.kolicina label {
+    padding-right: 1em;
+    font-size: 1em;
+}
+.kolicina input[type=number] {
+    width: 4em;
+    padding: 0.2em;
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+.kolicina input[type=number]:focus {
+    border: 1px solid steelblue;
+    border-radius: 5px;
+    outline: none;
+    resize: none;
+    background-color: white;
+}
+.greske {
+    min-height: 2em;;
+}
+.greske p{
+    padding-left: 8em;
+    color: red;
+    font-size: 9px;
+    margin-bottom: 0.1em;
+}
+.neMoze {
+    min-height: 1em;
+}
+.neMoze p{
+    padding-left: 8em;
+    color: red;
+    font-size: 9px;
+    margin: 0;
+}
+.brKr {
+    margin-bottom: 0.5em
+}
+.brKr label {
+    padding: 0.5em 1em;
+}
+.brKr input[type='radio']{
+    margin: 0.6em 0.4em 0.6em 1em;
+    transform: scale(1.5, 1.5);
+    -moz-transform: scale(1.5, 1.5);
+    -ms-transform: scale(1.5, 1.5);
+    -webkit-transform: scale(1.5, 1.5);
+    -o-transform: scale(1.5, 1.5);
+    accent-color: steelblue;
+}
+.otv label{
+    padding: 0.5em 1em; 
+}
+.otv input[type='radio']{
+    margin: 0.6em 0.5em 0.6em 0.65em;
+    transform: scale(1.5, 1.5);
+    -moz-transform: scale(1.5, 1.5);
+    -ms-transform: scale(1.5, 1.5);
+    -webkit-transform: scale(1.5, 1.5);
+    -o-transform: scale(1.5, 1.5);
+    accent-color: steelblue;
+}
+.colorPicker{
+    border-right: 1px solid white;
+}
+.colorPicker label{
+    display: block;
+}
+.colorPicker input{
+    display: none;
+}
+.colButton {
+    display: none;
+}
+.button {
+        display: block;
+        width: 25px;
+        height: 25px;
+        margin: 7px;
+        cursor: pointer;
+}
+.button span {
+        display: block;
+        margin-left: 0.5em;
+        width: 25px;
+        height: 25px;
+        padding: 0;
+        top: 50%;
+        left: 50%;
+        background: #eeeeee;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+        transition: ease .3s;
+}
+.button span:hover {
+    transform: scale(1.2)
+  }
+.belo .button span {
+    margin-top: 1em;
+    background-color: white;
+}
+.belo input:checked ~ .button span {
+    transform: scale(1.4);
+    border: 1px solid rgb(187,30,16)
+}
+.braon .button span {
+    background-color: #724a25
+}
+.braon input:checked ~ .button span {
+    transform: scale(1.4);
+    border: 1px solid rgb(187,30,16)
+}
+.crno .button span {
+    background-color: black
+}
+.crno input:checked ~ .button span {
+    transform: scale(1.4);
+    border: 1px solid rgb(187,30,16)
+}
+.deoForme {
+    border-right:1px solid white ;
+}
+.opcije{
+    display: grid;
+    position: relative;
+}
+.opcije label input[type='checkbox']{
+    transform: scale(1.4, 1.4);
+    -moz-transform: scale(1.4, 1.4);
+    -ms-transform: scale(1.4, 1.4);
+    -webkit-transform: scale(1.4, 1.4);
+    -o-transform: scale(1.4, 1.4);
+    accent-color: steelblue;
+    position: absolute;
+    left: 10em;
+    margin-top: 0.4em;
+}
+.nacinOtvaranja{
+    text-align: center;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    border-bottom: 1px solid white;
+    margin-bottom: 1.1em;
+}
+.otvaranja{
+    margin: auto 0.5em;  
+}
+.potvrdiDugme {
+    padding-bottom: 1.2em;
+}
+.maliDel {
+    padding-left: 8px;
+    padding-right: 8px;
+    border: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    color: red;
+}
+.maliDel:hover {
+    color: red;
+    border: 1px solid red;
+    border-radius: 10px;
+}
+.donjaCrta {
+    padding-left: 200px;
+    border-bottom: 1px solid grey;
+    margin-bottom: 1.5em;
+}
+.datum {
+    font-weight: lighter;
+    font-size: small;
+}
+.modalDugme {
+    display: none;
+}
+.listaPozicija {
+    padding-bottom: 2rem;
+}
+.greskaValidacije {
+    border-bottom: 1px solid red;
+}
+.greskaValidacije:focus{
+    border: 1px solid red
+}
+.nemoguceAB {
+    border-top: 1px solid red;
+}
+.nemoguceAB:focus {
+    border: 1px solid red
+}
+.izmenaKolicine input[type='number']{
+    width: 3rem;
+    margin-right: 1rem;
+}
+.dodajForma {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    text-align: center;
+}
+.dodajForma select {
+    padding: 0.5rem;
+    margin-left: 0.4rem;
+    margin-right: 0.4rem;
+    border: 1px solid grey;
+    border-radius: 8px;
+}
+.dodajForma select:focus  {
+    outline: none;
+    border: 1px solid steelblue;
+}
+.dodajForma input[type='number']{
+    padding: 0.45rem;
+    margin-left: 0.4rem;
+    margin-right: 0.4rem;
+    border: 1px solid grey;
+    border-radius: 8px;
+    width: 6rem;
+}
+.dodajForma input[type='number']:focus {
+    outline: none;
+    border: 1px solid steelblue;
+}
+.dodajElementDugme {
+    background-color: transparent;
+    color: rgb(25,135,84);
+    border: 1px solid rgb(25,135,84);
+    padding: 0.45rem 1rem 0.45rem 1rem;
+    
+    margin-left: 0.4rem;
+    margin-right: 0.4rem;
+    border-radius: 8px;
+}
+.dodajElementDugme:hover:enabled{
+    background-color: rgb(25,135,84);
+    color: white;
+}
+.dodajElementDugme:disabled {
+    opacity: 0.7;
+}
+.modal-footer {
+    height: 3rem;
+    background-color: rgb(235,235,235);
+    opacity: 0.7;
+}
+.modalCloseButton {
+    margin-right: 0;
+    margin-left: auto;
+    border: 1px solid grey;
+    border-radius: 6px;
+    background-color: transparent;
+    color: grey;
+}
+.modalCloseButton:hover {
+    color: red;
+    border: 1px solid red;
+}
+.printButton {
+    margin-left: auto; 
+    margin-right:auto; 
+    outline: none;
+    background: transparent;
+    color: grey;
+    border: 1px solid grey;
+    border-radius: 0.3rem;
+    padding: 0.4rem;
+}
+.printButton:hover{
+    background-color: grey;
+    color: white;
+}
+@media screen {
+    .printNoDisplay {
+        display: none;
+    }
+}
+@media print {
+    .printNoDisplay {
+        visibility: visible;
+    }
+    .noPrint {
+       display: none;
+    }
+    .izmenaKolicine input[type='number']{
+        border: none
+    }
+}
+@media screen and (max-width: 992px){
+    .main {
+        margin-top: 0;
+    }
+    .tipMere {
+        text-align: center;
+        border: none;
+        border-bottom: 1px solid white;
+        margin-bottom: 0.8em;
+    }
+    .tipMere input[type=radio]{
+        display: inline-block;
+        margin: 0.6em 1em 1.5em 2em;
+        transform: scale(2, 2);
+        -moz-transform: scale(2, 2);
+        -ms-transform: scale(2, 2);
+        -webkit-transform: scale(2, 2);
+        -o-transform: scale(2, 2);
+        accent-color: rgb(187,30,16)
+    }
+    .colorPicker{
+        text-align: center;
+        border: none;
+        border-bottom: 1px solid rgb(200,202,196);
+    }
+    .colorPicker label{
+        display: inline-block;
+    }
+    .dugmad {
+        text-align: center;
+    }
+    .button {
+        display: block;
+        width: 50px;
+        height: 45px;
+    }
+    .button span {
+        display: block;
+        width: 30px;
+        height: 30px;
+        background: #eeeeee;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+        transition: ease .3s;
+    }
+    .sirVis, .kolicina {
+        margin-top: 1.2em;
+        text-align: center;
+    }
+    .sirVis input::placeholder, .kolicina input::placeholder {
+        font-style: italic;
+        padding-left: 0.5em;
+        color: grey;
+    }
+    .sirVis label, .kolicina label {
+        display: none;
+    }
+    .sirVis input[type=number], .kolicina input[type=number] {
+        padding: 0.6em;
+        width: 7em;
+        margin-left: 1.5em;
+        margin-right: 1.5em;
+    }
+    .deoForme {
+        border: none;
+        border-bottom: 1px solid white;
+    }
+    .brKr, .otv {
+        text-align: center;
+    }
+    .brKr input[type="radio"], .otv input[type="radio"]{
+        transform: scale(2, 2);
+        -moz-transform: scale(2, 2);
+        -ms-transform: scale(2, 2);
+        -webkit-transform: scale(2, 2);
+        -o-transform: scale(2, 2);
+        margin-right: 0.8em;
+    }
+    .colButton {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        border: none;
+        border-left: 1px solid white;
+        border-bottom: 1px solid white;
+        border-right: 1px solid white;
+        padding: 0.4em 1em;
+        border-bottom-left-radius: 1em;
+        border-bottom-right-radius: 1em;
+        font-style: italic;
+        background-color: rgb(200,202,196);
+    }
+    .listaPozicija {
+        display: none;
+    }
+    .modalDugme {
+        display: block
+    }
+    .opcije {
+        margin: 1em auto;
+    }
+    .opcije label {
+        display: block;
+        padding: 0.5em;
+    }
+    .dugmadZaMaliEkran{
+        padding-bottom: 3rem;
+    }
+}
+
+
+
