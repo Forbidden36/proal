@@ -56,13 +56,13 @@ export class PVCComponent implements OnInit {
     let falcnaSirina: number = 0
     let falcnaVisina: number = 0
     if (this.pozicija.value.tipMere === 'nazivnaMera'){
-      falcnaVisina = this.pozicija.value.visina -118
+      falcnaVisina = this.pozicija.value.visina -114
       if(this.pozicija.value.brojKrila == 1){
-        falcnaSirina = this.pozicija.value.sirina - 118
+        falcnaSirina = this.pozicija.value.sirina - 114
       } else if (this.pozicija.value.brojKrila == 2) {
-        falcnaSirina = Math.round(this.pozicija.value.sirina / 2 - 84)
+        falcnaSirina = Math.round(this.pozicija.value.sirina / 2 - 80)
       } else {
-        falcnaSirina = Math.round(this.pozicija.value.sirina / 3 -79) 
+        falcnaSirina = Math.round(this.pozicija.value.sirina / 3 -75) 
       }
     } else {
       falcnaSirina = this.pozicija.value.sirina

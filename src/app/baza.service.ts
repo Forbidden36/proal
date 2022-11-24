@@ -43,7 +43,7 @@ export class BazaService {
           {id: '1083183', opis: 'ARX SPIN DK PRIHV.VEKA',kolicina: null, cena: 0.600},
           {id: '1083190-L', opis: 'ARX SPIN PRIHVATNIK DKI VEKA-LEVI',kolicina: null, cena: 0.850},
           {id: '1083190-D', opis: 'ARX SPIN PRIHVATNIK DKI VEKA-DESNI',kolicina: null, cena: 0.850},
-          {id: '1083202', opis: 'ARX SPIN PRIHVATNIK VEKA',kolicina: null, cena: 0.220},
+          {id: '1083202', opis: 'ARX SPIN PRIHVATNIK VEKA',kolicina: null, cena: 0.200},
           {id: '1083207', opis: 'ARX SPIN PRIHVATNIK NLU',kolicina: null, cena: 0.400},
           {id: '1083224', opis: 'ARX SPIN PRIH.RINGLE VEKA',kolicina: null, cena: 0.650},
           {id: '1083242', opis: 'ARX SPIN UGAO SARKA 130KG',kolicina: null, cena: 0.750},

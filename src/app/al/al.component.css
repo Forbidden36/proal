@@ -1,0 +1,77 @@
+.closeBar {
+    color: rgb(187,30,16);
+}
+.main {
+    background-color:  rgb(239,242,242);
+}
+.tipMere input[type=radio]{
+    accent-color: rgb(187,30,16);
+    transform: scale(1.5, 1.5);
+    -moz-transform: scale(1.5, 1.5);
+    -ms-transform: scale(1.5, 1.5);
+    -webkit-transform: scale(1.5, 1.5);
+    -o-transform: scale(1.5, 1.5);
+}
+.tipMere .varijanteStokova {
+    font-size: 0.9rem;
+    margin-left: 0.8rem;
+}
+.tipMere .varijanteStokova input[type=radio]{
+    transform: scale(1.5, 1.5);
+    -moz-transform: scale(1.2, 1.2);
+    -ms-transform: scale(1.2, 1.2);
+    -webkit-transform: scale(1.2, 1.2);
+    -o-transform: scale(1.2, 1.2);
+}
+.brKr input[type='radio']{
+    accent-color: rgb(187,30,16);
+}
+.otv input[type='radio']{
+    accent-color: rgb(187,30,16);
+}
+
+.belo input:checked ~ .button span {
+    border: 1px solid rgb(187,30,16)
+}
+.sivo .button span {
+    background-color: silver;
+}
+.sivo input:checked ~ .button span {
+    transform: scale(1.4);
+    border: 1px solid rgb(187,30,16)
+}
+.braon input:checked ~ .button span {
+    border: 1px solid rgb(187,30,16)
+}
+.antracit .button span {
+    background-color: #575d5e;
+}
+.antracit input:checked ~ .button span {
+    transform: scale(1.4);
+    border: 1px solid rgb(187,30,16)
+}
+.crno input:checked ~ .button span {
+    border: 1px solid rgb(187,30,16)
+}
+.opcije label input[type='checkbox'] {
+    accent-color: rgb(187,30,16);
+}
+@media screen and (max-width: 992px){
+    .modalDugme {
+        display: block;
+    }
+    .tipMere {
+        text-align: left; 
+    }
+    .tipMere h6 {
+        text-align: center;
+    }
+}
+@media screen and (max-width: 438px){
+    .varijanteStokova label {
+        display: block;
+    }
+    .tipMere {
+        text-align: left; 
+    }
+}

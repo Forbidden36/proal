@@ -1,1 +1,185 @@
-<p>al works!</p>
+<div class="container-lg noPrint w-80 main">
+    <div class="closeBar row row-cols-1">
+        <div class="col-8">    
+          <p style="margin-top: auto; margin-bottom: auto;">Okov za Aluminijum</p>
+        </div>
+        <div class="col-4 closeButton" >
+         <a routerLink="/HOME" routerLinkActive="active" ariaCurrentWhenActive="page">X</a>
+        </div>
+    </div>
+    <form [formGroup]="pozicijaAL">
+        <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+        <div class="nacinOtvaranja">
+            <input  type="radio" class="btn-check" name="nacinOtvaranja" id="kombinovano" (change)="otvRadio($event)" value="kombinovano" onclick="this.blur()" formControlName="nacinOtvaranja">
+            <label for="kombinovano" class="btn btn-outline-secondary otvaranja">Kombinovano</label>
+            <input type="radio" name="nacinOtvaranja" class="btn-check" id="okretno" (change)="otvRadio($event)" value="okretno" onclick="this.blur()"  formControlName="nacinOtvaranja">
+            <label for="okretno" class="btn btn-outline-secondary otvaranja">Okretno</label>
+            <input type="radio" class="btn-check" name="nacinOtvaranja" id="nagibno" (change)="otvRadio($event)" value="nagibno" onclick="this.blur()" formControlName="nacinOtvaranja">
+            <label for="nagibno" class="btn btn-outline-secondary otvaranja">Nagibno</label> 
+        </div>
+    </div>
+        <div class="row">
+            <div class="tipMere col-lg-2">
+                <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+                <h6 class="mb-2"><i>Tip mera</i></h6>
+                    <label for="nazivnaM"><input  type="radio" (change)="tipMereRadio($event)" name="tipMere" id="nazivnaM" value="nazivnaMera" formControlName="tipMere"><span>Nazivna mera</span></label>
+                        <div class="varijanteStokova">
+                            <label for="stok36"><input  type="radio"  name="tipStoka" id="stok36" [value]=36 formControlName="tipStoka"><span>Stok 36mm</span></label>
+                            <label for="stok42"><input  type="radio"  name="tipStoka" id="stok42" [value]=42 formControlName="tipStoka"><span>Stok 42mm</span></label>
+                            <label for="stok48"><input  type="radio"  name="tipStoka" id="stok42" [value]=48 formControlName="tipStoka"><span>Stok 48mm</span></label>
+                        </div>
+                    <label for="falcnaM"><input  type="radio" (change)="tipMereRadio($event)" name="tipMere" id="falcnaM" value="falcnaMera" formControlName="tipMere"><span>Falcna mera</span></label>
+                </div>
+            </div>
+            <div class="colorPicker col-lg-2">
+                <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+                <h6><i>Izabrati boju</i></h6>
+                <label class="belo">
+                    <input type="radio" value="belo" id="belo" formControlName="boja"><div class="button"><span></span></div>
+                </label>
+                <label class="sivo">
+                    <input type="radio" value="sivo" id="sivo" formControlName="boja"><div class="button"><span></span></div>
+                </label>
+                <label class="braon">
+                    <input type="radio" value="braon" id="braon" formControlName="boja"><div class="button"><span></span></div>
+                </label>
+                <label class="antracit">
+                    <input type="radio" value="antracit" id="antracit" formControlName="boja"><div class="button"><span></span></div>
+                </label> 
+                <label class="crno">
+                    <input type="radio" value="crno" id="crno" formControlName="boja"><div class="button"><span></span></div>
+                </label>  
+            </div>
+            </div>
+            <div class="col-lg-5 deoForme">
+                <button type="button" class="colButton" (click)="collapse.toggle(); changeColBtnName()" [attr.aria-expanded]="!isCollapsed"
+                aria-controls="collapseExample">
+                {{collapseButtonName}}
+              </button>
+<!-- 205-9001018466995-74 -->
+
+                <div class="brKr">
+                    <label for="brojKrila">Broj Krila: </label>
+                    <input  type="radio" [value]=1 formControlName="brojKrila">1
+                    <input  type="radio" [value]=2 formControlName="brojKrila">2
+                    <input  type="radio" [value]=3 formControlName="brojKrila">3
+                </div>
+                <div class="otv">
+                    <label for="otvaranje">Otvaranje: </label>
+                    <input  type="radio" value="levo"  formControlName="otvaranje">Levo 
+                    <input  type="radio" value="desno" formControlName="otvaranje">Desno
+                </div>
+                <div class="neMoze">
+                    <p *ngIf = "pozicijaAL.get('visina')?.touched && pozicijaAL.get('sirina')?.touched && pozicijaAL.errors?.['nemogucOdnosSirineIVisine']">Nemoguc odnos sirine i visine</p>
+                </div>
+                <div class="sirVis">
+                    <label for="sirina">Sirina: </label>
+                    <input  type="number" class="sirVisInput" [ngClass]="{'greskaValidacije': pozicijaAL.get('sirina')?.touched && pozicijaAL.errors?.['sirinaVelikaONO'] ||
+                    pozicijaAL.get('sirina')?.touched && pozicijaAL.errors?.['sirinaMalaON'] || pozicijaAL.get('sirina')?.touched && pozicijaAL.errors?.['sirinaMalaNO'] ||
+                    pozicijaAL.get('sirina')?.touched && pozicijaAL.errors?.['sirinaMalaON'], 'nemoguceAB': pozicijaAL.get('sirina')?.touched && pozicijaAL.get('visina')?.touched && pozicijaAL.errors?.['nemogucOdnosSirineIVisine']}" id="sirina" required placeholder="Sirina" formControlName="sirina">
+            
+                    <label for="visina">Visina: </label>
+                    <input  type="number" id="visina" class="sirVisInput" 
+                    [ngClass]="{'greskaValidacije': pozicijaAL.get('visina')?.touched && pozicijaAL.errors?.['visinaMala'] ||
+                    pozicijaAL.get('visina')?.touched && pozicijaAL.errors?.['visinaMalaCentRing'] ||
+                    pozicijaAL.get('visina')?.touched && pozicijaAL.errors?.['visinaMalaCentRingSigKip'] ||
+                    pozicijaAL.get('visina')?.touched && pozicijaAL.errors?.['visinaMalaSigKip'] ||
+                    pozicijaAL.get('visina')?.touched && pozicijaAL.errors?.['visinaVelika'] ||
+                    pozicijaAL.get('visina')?.touched && pozicijaAL.errors?.['visinaMalaOkretna'] ||
+                    pozicijaAL.get('visina')?.touched && pozicijaAL.errors?.['visinaMalaNagibna'] ||
+                    pozicijaAL.get('visina')?.touched && pozicijaAL.errors?.['visinaVelikaNagibna'],
+
+                                'nemoguceAB':       pozicijaAL.get('visina')?.touched && pozicijaAL.get('sirina')?.touched && pozicijaAL.errors?.['nemogucOdnosSirineIVisine']}"
+  
+                                                
+                                                     
+                    required placeholder="Visina" formControlName="visina"><br>
+                </div>
+                <div class="greske">
+                    <p *ngIf = "pozicijaAL.get('sirina')?.touched && pozicijaAL.errors?.['sirinaVelikaONO']">Maximalna falcna sirina iznosi 1400<span class="jedMere">[mm]</span></p>
+                    <p *ngIf = "pozicijaAL.get('sirina')?.touched && pozicijaAL.errors?.['sirinaMalaON']">Minimalna falcna sirina iznosi 320<span class="jedMere">[mm]</span></p>
+                    <p *ngIf = "pozicijaAL.get('sirina')?.touched && pozicijaAL.errors?.['sirinaMalaNO']">Minimalna falcna sirina iznosi 250<span class="jedMere">[mm]</span></p>
+                    <p *ngIf = "pozicijaAL.get('sirina')?.touched && pozicijaAL.errors?.['sirinaVelikaN']">Maximalna falcna sirina iznosi 2400<span class="jedMere">[mm]</span></p>
+
+                    <p *ngIf = "pozicijaAL.get('visina')?.touched && pozicijaAL.errors?.['visinaMala']">Minimalna falcna visina iznosi 250<span class="jedMere">[mm]</span></p>
+                    <p *ngIf = "pozicijaAL.get('visina')?.touched && pozicijaAL.errors?.['visinaMalaCentRing']">Minimalna falcna visina sa <i>centralnom ringlom</i> iznosi 450<span class="jedMere">[mm]</span></p>
+                    <p *ngIf = "pozicijaAL.get('visina')?.touched && pozicijaAL.errors?.['visinaMalaCentRingSigKip']">Minimalna falcna visina sa <i>centr.ringlom</i> i <i>sig.kipom</i> iznosi 380<span class="jedMere">[mm]</span></p>
+                    <p *ngIf = "pozicijaAL.get('visina')?.touched && pozicijaAL.errors?.['visinaMalaSigKip']">Minimalna falcna visina sa <i>sig.kipom</i> iznosi 330<span class="jedMere">[mm]</span></p>
+                    <p *ngIf = "pozicijaAL.get('visina')?.touched && pozicijaAL.errors?.['visinaVelika']">Maximalna falcna visina 2400<span class="jedMere">[mm]</span></p>
+                    <p *ngIf = "pozicijaAL.get('visina')?.touched && pozicijaAL.errors?.['visinaMalaOkretna']">Minimalna falcna visina iznosi 180<span class="jedMere">[mm]</span></p>
+                    <p *ngIf = "pozicijaAL.get('visina')?.touched && pozicijaAL.errors?.['visinaMalaNagibna']">Minimalna falcna visina iznosi 300<span class="jedMere">[mm]</span></p>
+                    <p *ngIf = "pozicijaAL.get('visina')?.touched && pozicijaAL.errors?.['visinaVelikaNagibna']">Maximalna falcna visina iznosi 1200<span class="jedMere">[mm]</span></p>
+                  </div>
+                <div class="kolicina">
+                    <label for="kolicina">Kolicina: </label>
+                    <input  type="number" placeholder="Kolicina" formControlName="kolicina"><br>
+                </div>
+
+            </div>
+            <div class="col-lg-3 opcije">
+                <h6>Dodatne opcije</h6>
+                <label for="sigurnosniKip"><span>Sigurnosni kip</span><input type="checkbox" value="sigurnosniKip" formControlName="sigurnosniKip"></label>
+                <label for="centralnaRingla">Centralna ringla<input type="checkbox" value="centralnaRingla" formControlName="centralnaRingla"></label>
+                <label for="sigurnosnaRucica">Sigurnosna rucica<input type="checkbox" value="sigurnosnaRucica" formControlName="sigurnosnaRucica"></label>
+            </div>  
+        </div> 
+        <div class="d-grid gap-2 col-3 mx-auto potvrdiDugme">
+            <button class="btn btn-outline-success" type="button" [disabled]="!pozicijaAL.valid" (click)="onSubmit()">Potvrdi</button>
+        </div>     
+    </form>
+</div>
+<div class="noPrint container mx-auto m-0 row dugmadZaMaliEkran">
+    <div class="col-lg-6">
+        <div class="d-grid col-lg-6 mx-auto potvrdiDugme">
+            <div class="btn-group" role="group">
+                <button class="btn btn-outline-primary" type="button" [disabled]="pozicijeAL.length === 0">Nalog za odvajanje</button>
+                <button class="btn btn-outline-primary" type="button" [disabled]="pozicijeAL.length === 0" onclick="this.blur()" >Izmeni</button>
+
+            </div>
+            
+        </div> 
+    </div>
+    <div class="col-lg-6 modalDugme">
+        <div class="d-grid col-lg-6 mx-auto potvrdiDugme">
+            <button class="btn btn-outline-secondary" type="button" [disabled]="pozicijeAL.length === 0" onclick="this.blur()" >Lista pozicija</button>
+        </div> 
+    </div>
+    <div class="col-lg-6">
+        <div class="d-grid col-lg-6 mx-auto potvrdiDugme">
+            <button class="btn btn-outline-dark" type="button" [disabled]="pozicijeAL.length === 0" onclick="this.blur()">Izracunaj Cenu</button>
+        </div> 
+    </div>
+</div>
+<div class="container listaPozicija noPrint">
+    <table class="table table-sm table-responsive">
+        <thead>
+            <tr class="table-light">
+                <th scope="col">r.b.</th>
+                <th scope="col">F.Sirina</th>
+                <th scope="col">F.Visina</th>
+                <th scope="col">Br.Krila</th>
+                <th scope="col">Otvaranje</th>
+                <th scope="col">Nacin Otvaranja</th>
+                <th scope="col">Opis</th>
+                <th scope="col">Kom.</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let pos of pozicijeAL; index as i; trackBy: trackByFn">
+                <td>{{i + 1}}</td>
+                <td>{{pos.sirina}}</td>
+                <td>{{pos.visina}}</td>
+                <td>{{pos.brojKrila}}</td>
+                <td>{{pos.otvaranje}}</td>
+                <td>{{pos.nacinOtvaranja}}</td>
+                <td>{{pos.opis}}</td>
+                <td>{{pos.kolicina}}</td>                
+                <th><button class="maliDel" (click)="deleteRow(i)">X</button></th>            
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="footer">
+    <span>M&J<sup>&#174;</sup></span>
+</div>

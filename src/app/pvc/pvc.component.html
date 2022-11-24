@@ -1,6 +1,6 @@
 
 <div class="d-flex justify-content-end">
-    <span class="printNoDisplay datum ">{{today | date}}</span>
+    <span class="printNoDisplay datum">{{today | date}}</span>
 </div>
 <div class="printNoDisplay container w-25 text-center">    
     <p class="donjaCrta"></p>
@@ -16,7 +16,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let ok of konacanOkov; index as i; trackBy: trackByFn">
+            <tr class="tabelaKonacnogOkova" *ngFor="let ok of konacanOkov; index as i; trackBy: trackByFn">
                 <td>{{i + 1}}</td>
                 <td>{{ok.id}}</td>
                 <td>{{ok.opis}}</td>
@@ -133,7 +133,7 @@
 
             </div>
             <div class="col-lg-3 opcije">
-                <h6>Dodatne opcije</h6>
+                <h6><i>Dodatne opcije</i></h6>
                 <label for="sigurnosniKip"><span>Sigurnosni kip</span><input type="checkbox" value="sigurnosniKip" formControlName="sigurnosniKip"></label>
                 <label for="centralnaRingla">Centralna ringla<input type="checkbox" value="centralnaRingla" formControlName="centralnaRingla"></label>
                 <label for="sigurnosnaRucica">Sigurnosna rucica<input type="checkbox" value="sigurnosnaRucica" formControlName="sigurnosnaRucica"></label>
@@ -155,9 +155,7 @@
             <div class="btn-group" role="group">
                 <button class="btn btn-outline-primary" type="button" [disabled]="pozicije.length === 0" (click)="izracunajStampaj()">Nalog za odvajanje</button>
                 <button class="btn btn-outline-primary" type="button" [disabled]="pozicije.length === 0" onclick="this.blur()" (click)="openFullscreen(content)">Izmeni</button>
-
             </div>
-            
         </div> 
     </div>
     <div class="col-lg-6 modalDugme">
