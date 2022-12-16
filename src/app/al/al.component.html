@@ -132,7 +132,7 @@
     <div class="col-lg-6">
         <div class="d-grid col-lg-6 mx-auto potvrdiDugme">
             <div class="btn-group" role="group">
-                <button class="btn btn-outline-primary" type="button" [disabled]="pozicijeAL.length === 0">Nalog za odvajanje</button>
+                <button class="btn btn-outline-primary" type="button" (click)="izracunajAL()" [disabled]="pozicijeAL.length === 0">Nalog za odvajanje</button>
                 <button class="btn btn-outline-primary" type="button" [disabled]="pozicijeAL.length === 0" onclick="this.blur()" >Izmeni</button>
 
             </div>

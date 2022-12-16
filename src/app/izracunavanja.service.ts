@@ -279,7 +279,7 @@ export class IzracunavanjaService {
       let ringle = {}
       if (centralnaRingla === false) {
         ringle = {1083252: 1, 1083253: 1, 1083224:2}
-      } else {
+      } else if (centralnaRingla === true){
         if (b > 380 && b < 621){
           ringle = {1098116: 1}
         }

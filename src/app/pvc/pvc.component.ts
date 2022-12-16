@@ -38,9 +38,9 @@ export class PVCComponent implements OnInit {
     otvaranje: new UntypedFormControl ('levo', {nonNullable:true}),
     kolicina: new UntypedFormControl('', Validators.required),
     boja: new UntypedFormControl('belo', {nonNullable:true}),
-    sigurnosniKip: new UntypedFormControl(false),
-    centralnaRingla: new UntypedFormControl(false),
-    sigurnosnaRucica: new UntypedFormControl(false)
+    sigurnosniKip: new UntypedFormControl(false, {nonNullable: true}),
+    centralnaRingla: new UntypedFormControl(false, {nonNullable: true}),
+    sigurnosnaRucica: new UntypedFormControl(false, {nonNullable: true})
   },{validators: [this.serviceValidacije.ValidateSirina(), this.serviceValidacije.validateVisina(), this.serviceValidacije.validateOdnosSirineIVisine()]})
 
   get tipMere() {return this.pozicija.get('tipMere')}
@@ -149,7 +149,7 @@ export class PVCComponent implements OnInit {
           centralnaRingla: this.pozicija.value.centralnaRingla,
           sigurnosnaRucica: this.pozicija.value.sigurnosnaRucica
         }
-        // console.log(this.pos)
+        console.log(this.pos)
         this.pozicije.push(this.pos)
       }
         //on submit clears mostly variable fields

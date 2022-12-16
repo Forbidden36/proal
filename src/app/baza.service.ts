@@ -7,6 +7,8 @@ import { Injectable } from '@angular/core';
 export class BazaService {
   JOVAN = [
           
+          {id: '1078264', opis: 'ARX SPIN DKI SIGURNOSNI PRIHVATNIK ALU 9-MM LEVI',kolicina: null, cena: 1.6},
+          {id: '1078265', opis: 'ARX SPIN DKI SIGURNOSNI PRIHVATNIK ALU 9MM DESNI',kolicina: null, cena: 1.6},
           {id: '1083008', opis: 'ARX SPIN MAKAZE 12/20-9 250-L',kolicina: null, cena: 2.150},
           {id: '1083009', opis: 'SPIN MAKAZE 12/20-9 250-D',kolicina: null, cena: 2.100},
           {id: '1083010', opis: 'SPIN MAKAZE 12/20-9 350-L',kolicina: null, cena: 2.400},

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Prozor } from '../prozor';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { BazaService } from '../baza.service';
+import { IzracunavanjaService } from '../izracunavanja.service';
+import { IzracunavanjaAlService } from '../izracunavanja-al.service';
 
 @Component({
   selector: 'app-al',
@@ -14,6 +17,8 @@ export class ALComponent implements OnInit {
   posAL!: Prozor;
   pozicijeAL: any[] = []
   okovAL: any = []
+  maliPrihvatnik = {}
+  velikiPrihvatnik ={}
   public isCollapsed = false;
   collapseButtonName = 'Sakrij'
 
@@ -27,9 +32,9 @@ export class ALComponent implements OnInit {
     otvaranje: new UntypedFormControl ('levo', {nonNullable:true}),
     kolicina: new UntypedFormControl('', Validators.required),
     boja: new UntypedFormControl('belo', {nonNullable:true}),
-    sigurnosniKip: new UntypedFormControl(false),
-    centralnaRingla: new UntypedFormControl(false),
-    sigurnosnaRucica: new UntypedFormControl(false)
+    sigurnosniKip: new UntypedFormControl(false, {nonNullable: true}),
+    centralnaRingla: new UntypedFormControl(false, {nonNullable: true}),
+    sigurnosnaRucica: new UntypedFormControl(false, {nonNullable: true})
   })
 
   onSubmit(){
@@ -142,7 +147,58 @@ export class ALComponent implements OnInit {
         this.pozicijaAL.controls['kolicina'].reset()
   }
   izracunajAL(){
-    
+    let prihvGetribe = 0
+    let prihvMakaze = 0;
+    let prihvZadnjeg = 0;
+    let prihvatnikSigurnosnog = 0;
+    let prihvatnikUgaonika = 0;
+    for (let i=0; i<this.pozicijeAL.length; i++){
+      if(this.pozicijeAL[i].nacinOtvaranja == "kombinovano"){
+        if(this.pozicijeAL[i].brojKrila == 1){
+          this.okovAL[i]={...this.serviceRacunanjaAL.jednokrilni,
+                          ...this.serviceRacunanja.izaberiGetribu(this.pozicijeAL[i].visina, this.pozicijeAL[i].sigurnosniKip),
+                          ...this.serviceRacunanjaAL.izaberiMakazuAL(this.pozicijeAL[i].sirina, this.pozicijeAL[i].otvaranje),
+                          ...this.serviceRacunanja.izaberiUgaonik(this.pozicijeAL[i].sirina, this.pozicijeAL[i].visina, this.pozicijeAL[i].sigurnosniKip),
+                          ...this.serviceRacunanja.izaberiZadnjiZatv(this.pozicijeAL[i].sirina, this.pozicijeAL[i].visina, this.pozicijeAL[i].sigurnosniKip),
+                          ...this.serviceRacunanjaAL.izaberiKipAL(this.pozicijeAL[i].sirina, this.pozicijeAL[i].visina, this.pozicijeAL[i].sigurnosniKip, this.pozicijeAL[i].otvaranje, this.pozicijeAL[i].brojKrila),
+                          ...this.serviceRacunanjaAL.izborMaskicaAL(this.pozicijeAL[i].brojKrila, this.pozicijeAL[i].otvaranje, this.pozicijeAL[i].boja),
+                          ...this.serviceRacunanjaAL.izaberiRucicuAL(this.pozicijeAL[i].sigurnosnaRucica, this.pozicijeAL[i].boja)               
+          }
+          if (this.okovAL[i].hasOwnProperty('prihvGetribe')){
+            prihvGetribe = this.okovAL[i].prihvGetribe;
+            delete this.okovAL[i].prihvGetribe;
+          } else prihvGetribe = 0;
+
+          if (this.okovAL[i].hasOwnProperty('prihvMakaze')){
+            prihvMakaze = this.okovAL[i].prihvMakaze;
+            delete this.okovAL[i].prihvMakaze;
+          } else prihvMakaze = 0;
+
+          if (this.okovAL[i].hasOwnProperty('prihvZadnjeg')){
+            prihvZadnjeg = this.okovAL[i].prihvZadnjeg;
+            delete this.okovAL[i].prihvZadnjeg;
+          } else prihvZadnjeg = 0;
+
+          if (this.okovAL[i].hasOwnProperty('prihvSig')){
+            prihvatnikSigurnosnog = this.okovAL[i].prihvSig;
+            delete this.okovAL[i].prihvSig;
+          } else prihvatnikSigurnosnog = 0;
+
+          this.maliPrihvatnik = {1097952: prihvGetribe + prihvMakaze + prihvZadnjeg + prihvatnikSigurnosnog + 1};
+
+          this.okovAL[i] = {...this.okovAL[i], ...this.maliPrihvatnik}
+        } else {
+          this.okovAL[i] = {...this.serviceRacunanjaAL.dvokrilni,
+                            ...this.serviceRacunanja.izaberiGetribu(this.pozicijeAL[i].visina, this.pozicijeAL[i].sigurnosniKip),
+                            ...this.serviceRacunanjaAL.izaberiMakazuDvokrilnogAL(this.pozicijeAL[i].sirina, this.pozicijeAL[i].otvaranje),
+                            ...this.serviceRacunanja.izaberiZadnjiZatv(this.pozicijeAL[i].sirina, this.pozicijeAL[i].visina, this.pozicijeAL[i].sigurnosniKip),
+                            ...this.serviceRacunanjaAL.izaberiUgaonikDvokrilnogAL(this.pozicijeAL[i].sirina, this.pozicijeAL[i].visina, this.pozicijeAL[i].sigurnosniKip, this.pozicijeAL[i].centralnaRingla),
+                            ...this.serviceRacunanja.izaberiRingle(this.pozicijeAL[i].visina, this.pozicijeAL[i].centralnaRingla), 
+          }
+        }
+        console.log(this.okovAL)
+      }
+    }
   }
   partialClear(){
     this.pozicijaAL.controls['sirina'].reset()
@@ -200,7 +256,8 @@ export class ALComponent implements OnInit {
       this.collapseButtonName = 'Sakrij'
     }
   }
-  constructor(private modalService: NgbModal) { }
+  constructor(public dataService: BazaService, private serviceRacunanja: IzracunavanjaService,
+     private serviceRacunanjaAL: IzracunavanjaAlService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.pozicijaAL.controls['tipStoka'].disable()
