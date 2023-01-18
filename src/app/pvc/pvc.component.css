@@ -184,6 +184,12 @@
         display: block
     }
 } 
+@media print{
+    .noPrint {
+        display: none;
+     }
+}
+
 
 
 

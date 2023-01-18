@@ -136,6 +136,15 @@
     background-color: grey;
     color: white;
 }
+.datum {
+    font-weight: lighter;
+    font-size: small;
+}
+.donjaCrta {
+    padding-left: 200px;
+    border-bottom: 1px solid grey;
+    margin-bottom: 1.5em;
+}
 .greskaValidacije {
     border-bottom: 1px solid red;
 }
