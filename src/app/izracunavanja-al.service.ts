@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class IzracunavanjaAlService {
 
   jednokrilni = {1083247: 1, 1083250: 1}
-  dvokrilni = {1101239: 1, 1101241:1, 1083242: 2, 1083250: 2}
+  dvokrilni = {1101239: 1, 1101241:1, 1083247: 2, 1083250: 2}
 
   izaberiKipAL(a: number, b:number, sigurnosniKip: boolean, otvaranje: string, brojKrila: number){
     let kipElementi = {} 
@@ -16,7 +16,7 @@ export class IzracunavanjaAlService {
           kipElementi = {1100983: 1, '1078264': 1}
         }
         if(otvaranje == 'desno'){
-          kipElementi = {1100983: 1, '1078265':1}
+          kipElementi = {1100983: 1, '1078265': 1}
         }
       }
       if(a > 999){
@@ -51,6 +51,33 @@ export class IzracunavanjaAlService {
 
     }
     return kipElementi
+  }
+
+  izaberiRingle(b: number, centralnaRingla:boolean){
+    let ringle = {}
+    if (centralnaRingla === false) {
+      ringle = {1083252: 1, 1083253: 1, 1097953:2}
+    } else if (centralnaRingla === true){
+      if (b > 380 && b < 621){
+        ringle = {1098116: 1}
+      }
+      if (b > 620 && b < 1001){
+        ringle = {1098120: 1}
+      }
+      if(b > 1000 && b < 1401){
+        ringle = {1098122: 1 }
+      }
+      if (b > 1400 && b < 1801){
+        ringle = {1098123: 1}
+      }
+      if (b > 1800 && b < 2001){
+        ringle = {1098124: 1}
+      }
+      if (b > 2000){
+        ringle = {1098125:1}
+      }
+    }
+    return ringle
   }
 
   izaberiMakazuAL(b: number, otvaranje: string){
@@ -196,7 +223,11 @@ export class IzracunavanjaAlService {
               maske = {1105445: 1, 1087794: 1, 1087795: 1, 1087796: 1, 1087797: 1, 1101241:1}
               } 
         } else if (boja === 'antracit'){
-            console.log('U PRIPREMI')
+            if(otvaranje === 'levo'){
+              maske = {1134365: 1, 1134358: 1, 1134359: 1, 1134361: 1, 1134364: 1, 1101239:1}
+            } else {
+              maske = {1134366: 1, 1134385: 1, 1134359: 1, 1134361: 1, 1134364: 1, 1101241:1}
+              }
         }
       } else {
         if (boja === 'belo'){
@@ -208,10 +239,189 @@ export class IzracunavanjaAlService {
         } else if (boja === 'crno'){
           maske = {1105444: 1, 1105445: 1, 1087794: 2, 1087795: 2, 1087796: 2, 1087797: 2}
         } else if (boja === 'antracit'){
-          console.log('U PRIPREMI')
+          maske = {1134365: 1, 1134366: 1, 1134358: 2, 1134359: 2, 1134361: 2, 1134364: 2}
         }
       } 
     return maske
+  }
+  //Okretni
+  zaJednokrilniOkretniAL(b: number, otvaranje: string){
+    let jednokrilniOkretni ={}
+    if(b < 1601){
+      if (otvaranje === 'levo'){
+        jednokrilniOkretni = {1083247: 1, 1101239: 1, 1083250: 1, 1083265: 1}
+      }
+      if (otvaranje === 'desno'){
+        jednokrilniOkretni = {1083247: 1, 1101241: 1, 1083250: 1, 1083264: 1}
+      } 
+    } else {
+      if (otvaranje === 'levo'){
+        jednokrilniOkretni = {1083247: 1, 1101239: 1, 1083250: 2, 1083269: 1, 1083265: 1}
+      }
+      if (otvaranje === 'desno'){
+        jednokrilniOkretni = {1083247: 1, 1101241: 1, 1083250: 2, 1083269: 1, 1083264: 1}
+      } 
+    }
+    return jednokrilniOkretni
+  }
+  zaDvokrilniOkretni(b: number){
+    let dvokrilniOkretni ={}
+    if (b < 1601) {
+      dvokrilniOkretni = {1083247: 2, 1101239: 1, 1101241: 1, 1083250: 2, 1083265: 1, 1083264: 1, 1083252: 1, 1083253: 1, 1097953: 2}
+    } else {
+      dvokrilniOkretni = {1083247: 2, 1101239: 1, 1101241: 1, 1083250: 4, 1083269: 2, 1083265: 1, 1083264: 1, 1083252: 1, 1083253: 1, 1097953: 2}
+    }
+    return dvokrilniOkretni
+  }
+  izaberiMaskeOkretnogAL(b:number, boja: string, brKr: number, otvaranje: string){
+    let okretneMaskiceAL = {}
+    if(brKr == 1){
+      if(boja == 'belo'){ //Belo
+        if(b < 1601){
+          if(otvaranje == 'levo'){
+            okretneMaskiceAL = {1105332: 1, 1083275: 1, 1083273: 1, 1083279: 1, 1083277: 1}
+          } else {
+            okretneMaskiceAL = {1105333: 1, 1083275: 1, 1083273: 1, 1083279: 1, 1083277: 1}
+          }
+        } else {
+          if(otvaranje == 'levo'){
+            okretneMaskiceAL = {1105332: 1, 1083275: 1, 1083273: 1, 1083279: 2, 1083277: 2}
+          } else {
+            okretneMaskiceAL = {1105333: 1, 1083275: 1, 1083273: 1, 1083279: 2, 1083277: 2}
+          }
+        }
+      } else if(boja == 'sivo'){ //Sivo
+        if(b < 1601){
+          if(otvaranje == 'levo'){
+            okretneMaskiceAL = {1105446: 1, 1093923: 1, 1093922: 1, 1093926: 1, 1093928: 1}
+          } else {
+            okretneMaskiceAL = {1105447: 1, 1093923: 1, 1093922: 1, 1093926: 1, 1093928: 1}
+          }
+        } else {
+          if(otvaranje == 'levo'){
+            okretneMaskiceAL = {1105446: 1, 1093923: 1, 1093922: 1, 1093926: 2, 1093928: 2}
+          } else {
+            okretneMaskiceAL = {1105447: 1, 1093923: 1, 1093922: 1, 1093926: 2, 1093928: 2}
+          }
+        }
+      } else if(boja == 'braon'){ //Braon
+        if(b < 1601){
+          if(otvaranje == 'levo'){
+            okretneMaskiceAL = {1105442: 1, 1083276: 1, 1083274: 1, 1083278: 1, 1083280: 1}
+          } else {
+            okretneMaskiceAL = {1105443: 1, 1083276: 1, 1083274: 1, 1083278: 1, 1083280: 1}
+          }
+        } else {
+          if(otvaranje == 'levo'){
+            okretneMaskiceAL = {1105442: 1, 1083276: 1, 1083274: 1, 1083278: 2, 1083280: 2}
+          } else {
+            okretneMaskiceAL = {1105443: 1, 1083276: 1, 1083274: 1, 1083278: 2, 1083280: 2}
+          }
+        }
+      } else if(boja == 'antracit'){ //Antracit
+        if(b < 1601){
+          if(otvaranje == 'levo'){
+            okretneMaskiceAL = {1134365: 1, 1134358: 1, 1134357: 1, 1134361: 1, 1134364: 1}
+          } else {
+            okretneMaskiceAL = {1134366: 1, 1134358: 1, 1134357: 1, 1134361: 1, 1134364: 1}
+          }
+        } else {
+          if(otvaranje == 'levo'){
+            okretneMaskiceAL = {1134365: 1, 1134358: 1, 1134357: 1, 1134361: 2, 1134364: 2}
+          } else {
+            okretneMaskiceAL = {1134366: 1, 1134358: 1, 1134357: 1, 1134361: 2, 1134364: 2}
+          }
+        }
+      } else if(boja == 'crno'){ //Crno
+        if(b < 1601){
+          if(otvaranje == 'levo'){
+            okretneMaskiceAL = {1105444: 1, 1087794: 1, 1087793: 1, 1087796: 1, 1087797: 1}
+          } else {
+            okretneMaskiceAL = {1105445: 1, 1087794: 1, 1087793: 1, 1087796: 1, 1087797: 1}
+          }
+        } else {
+          if(otvaranje == 'levo'){
+            okretneMaskiceAL = {1105444: 1, 1087794: 1, 1087793: 1, 1087796: 2, 1087797: 2}
+          } else {
+            okretneMaskiceAL = {1105445: 1, 1087794: 1, 1087793: 1, 1087796: 2, 1087797: 2}
+          }
+        }
+      }
+    } else {
+        if(boja == 'belo'){
+          if(b < 1601){
+            okretneMaskiceAL = {1105332: 1, 1105333: 1, 1083275: 2, 1083273: 2, 1083279: 2, 1083277: 2}
+          } else {
+            okretneMaskiceAL = {1105332: 1, 1105333: 1, 1083275: 2, 1083273: 2, 1083279: 4, 1083277: 4}
+          }
+        } else if(boja == 'sivo'){
+          if(b < 1601){
+            okretneMaskiceAL = {1105446: 1, 1105447: 1,  1093923: 2, 1093922: 2, 1093926: 2, 1093928: 2}
+          } else {
+            okretneMaskiceAL = {1105446: 1, 1105447: 1,  1093923: 2, 1093922: 2, 1093926: 4, 1093928: 4}
+          }
+        } else if(boja == 'braon'){
+          if(b < 1601){
+            okretneMaskiceAL = {1105442: 1, 1105443: 1,  1083276: 2, 1083274: 2, 1083278: 2, 1083280: 2}
+          } else {
+            okretneMaskiceAL = {1105442: 1, 1105443: 1,  1083276: 2, 1083274: 2, 1083278: 4, 1083280: 4}
+          }
+        } else if(boja == 'antracit'){
+          if(b < 1601){
+            okretneMaskiceAL = {1134365: 1, 1134366: 1, 1134358: 2, 1134357: 2, 1134361: 2, 1134364: 2}
+          } else {
+            okretneMaskiceAL = {1134365: 1, 1134366: 1, 1134358: 2, 1134357: 2, 1134361: 4, 1134364: 4}
+          }
+        } else if(boja == 'crno'){
+          if(b < 1601){
+            okretneMaskiceAL = {1105444: 1, 1105445: 1, 1087794: 2, 1087793: 2, 1087796: 2, 1087797: 2}
+          } else {
+            okretneMaskiceAL = {1105444: 1, 1105445: 1, 1087794: 2, 1087793: 2, 1087796: 4, 1087797: 4}
+          }
+        }
+    }
+        return okretneMaskiceAL
+  }
+  zaNagibnoAL(a:number, boja: string){
+    let nagibniAL = {}
+    if(a < 801){
+      if(boja == 'belo'){
+        nagibniAL = {1083250: 2, 1083269: 2, 1099152: 1, 1083279: 2, 1083277: 2}
+      } else if(boja == 'sivo'){
+        nagibniAL = {1083250: 2, 1083269: 2, 1099152: 1, 1093926: 2, 1093928: 2}
+      } else if(boja == 'braon'){
+        nagibniAL = {1083250: 2, 1083269: 2, 1099152: 1, 1083278: 2, 1083280: 2}
+      } else if(boja == 'antracit'){
+        nagibniAL = {1083250: 2, 1083269: 2, 1099152: 1, 1134361: 2, 1134364: 2}
+      } else if(boja == 'crno'){
+        nagibniAL = {1083250: 2, 1083269: 2, 1099152: 1, 1087797: 2, 1087796: 2}
+      }
+    } else if(a > 800 && a < 1601){
+      if(boja == 'belo'){
+        nagibniAL = {1083250: 2, 1083269: 2, 1099152: 2, 1083279: 2, 1083277: 2}
+      } else if(boja == 'sivo'){
+        nagibniAL = {1083250: 2, 1083269: 2, 1099152: 2, 1093926: 2, 1093928: 2}
+      } else if(boja == 'braon'){
+        nagibniAL = {1083250: 2, 1083269: 2, 1099152: 2, 1083278: 2, 1083280: 2}
+      } else if(boja == 'antracit'){
+        nagibniAL = {1083250: 2, 1083269: 2, 1099152: 2, 1134361: 2, 1134364: 2}
+      } else if(boja == 'crno'){
+        nagibniAL = {1083250: 2, 1083269: 2, 1099152: 2, 1087797: 2, 1087796: 2}
+      }
+    } else {
+      if(boja == 'belo'){
+        nagibniAL = {1083250: 3, 1083269: 3, 1099152: 2, 1083279: 3, 1083277: 3}
+      } else if(boja == 'sivo'){
+        nagibniAL = {1083250: 3, 1083269: 3, 1099152: 2, 1093926: 3, 1093928: 3}
+      } else if(boja == 'braon'){
+        nagibniAL = {1083250: 3, 1083269: 3, 1099152: 2, 1083278: 3, 1083280: 3}
+      } else if(boja == 'antracit'){
+        nagibniAL = {1083250: 3, 1083269: 3, 1099152: 2, 1134361: 3, 1134364: 3}
+      } else if(boja == 'crno'){
+        nagibniAL = {1083250: 3, 1083269: 3, 1099152: 2, 1087797: 3, 1087796: 3}
+      }
+    }
+    return nagibniAL
   }
 
   izaberiRucicuAL(sigRucica: boolean, boja: string){
@@ -222,7 +432,7 @@ export class IzracunavanjaAlService {
       } else if (boja === 'braon'){
         rucicaAL = {'HOPE340-8017': 1}
       } else if (boja === 'sivo'){
-        console.log('U pripremi')
+        rucicaAL = {'HOPE340E6': 1}
       } else if (boja === 'antracit'){
         console.log('U pripremi')
       } else if (boja === 'crno'){
@@ -234,7 +444,7 @@ export class IzracunavanjaAlService {
       } else if (boja === 'braon'){
         rucicaAL = {'ITAL340C-SIG': 1}
       } else if (boja === 'sivo'){
-        console.log('U pripremi')
+        rucicaAL = {'ITAL340E6-SIG': 1}
       } else if (boja === 'antracit'){
         console.log('U pripremi')
       } else if (boja === 'crno'){

@@ -1,3 +1,30 @@
+
+<div class="d-flex justify-content-end">
+    <span class="printNoDisplay datum">{{today | date}}</span>
+</div>
+<div class="printNoDisplay container w-25 text-center">    
+    <p class="donjaCrta"></p>
+</div>
+<div class="printNoDisplay container">
+    <table class="table table-sm table-responsive">
+        <thead>
+            <tr class="table-light">
+                <th scope="col">r.b.</th>
+                <th scope="col">Sifra</th>
+                <th scope="col">Opis</th>
+                <th scope="col">Kolicina</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="tabelaKonacnogOkova" *ngFor="let ok of konacanOkovAL; index as i; trackBy: trackByFn">
+                <td>{{i + 1}}</td>
+                <td>{{ok.id}}</td>
+                <td>{{ok.opis}}</td>
+                <td>{{ok.kolicina}}</td>                           
+            </tr>
+        </tbody>
+    </table>
+</div>
 <div class="container-lg noPrint w-80 main">
     <div class="closeBar row row-cols-1">
         <div class="col-8">    
@@ -73,12 +100,12 @@
                     <p *ngIf = "pozicijaAL.get('visina')?.touched && pozicijaAL.get('sirina')?.touched && pozicijaAL.errors?.['nemogucOdnosSirineIVisine']">Nemoguc odnos sirine i visine</p>
                 </div>
                 <div class="sirVis">
-                    <label for="sirina">Sirina: </label>
+                    <label for="sirina">Sirina <span><small><i>[mm]</i></small></span>: </label>
                     <input  type="number" class="sirVisInput" [ngClass]="{'greskaValidacije': pozicijaAL.get('sirina')?.touched && pozicijaAL.errors?.['sirinaVelikaONO'] ||
                     pozicijaAL.get('sirina')?.touched && pozicijaAL.errors?.['sirinaMalaON'] || pozicijaAL.get('sirina')?.touched && pozicijaAL.errors?.['sirinaMalaNO'] ||
                     pozicijaAL.get('sirina')?.touched && pozicijaAL.errors?.['sirinaMalaON'], 'nemoguceAB': pozicijaAL.get('sirina')?.touched && pozicijaAL.get('visina')?.touched && pozicijaAL.errors?.['nemogucOdnosSirineIVisine']}" id="sirina" required placeholder="Sirina" formControlName="sirina">
             
-                    <label for="visina">Visina: </label>
+                    <label for="visina">Visina <span><small><i>[mm]</i></small></span>: </label>
                     <input  type="number" id="visina" class="sirVisInput" 
                     [ngClass]="{'greskaValidacije': pozicijaAL.get('visina')?.touched && pozicijaAL.errors?.['visinaMala'] ||
                     pozicijaAL.get('visina')?.touched && pozicijaAL.errors?.['visinaMalaCentRing'] ||
@@ -132,8 +159,8 @@
     <div class="col-lg-6">
         <div class="d-grid col-lg-6 mx-auto potvrdiDugme">
             <div class="btn-group" role="group">
-                <button class="btn btn-outline-primary" type="button" (click)="izracunajAL()" [disabled]="pozicijeAL.length === 0">Nalog za odvajanje</button>
-                <button class="btn btn-outline-primary" type="button" [disabled]="pozicijeAL.length === 0" onclick="this.blur()" >Izmeni</button>
+                <button class="btn btn-outline-primary" type="button" (click)="izracunajStampajAL()" [disabled]="pozicijeAL.length === 0">Nalog za odvajanje</button>
+                <button class="btn btn-outline-primary" type="button" [disabled]="pozicijeAL.length === 0" onclick="this.blur()" (click)="openFullscreen(content)" >Izmeni</button>
 
             </div>
             
@@ -146,35 +173,38 @@
     </div>
     <div class="col-lg-6">
         <div class="d-grid col-lg-6 mx-auto potvrdiDugme">
-            <button class="btn btn-outline-dark" type="button" [disabled]="pozicijeAL.length === 0" onclick="this.blur()">Izracunaj Cenu</button>
+            <button class="btn btn-outline-dark" type="button" (click)="izracunajCenu()" [disabled]="pozicijeAL.length === 0" onclick="this.blur()">{{cena}}</button>
         </div> 
     </div>
 </div>
-<div class="container listaPozicija noPrint">
-    <table class="table table-sm table-responsive">
+<div class="container d-flex justify-content-center listaPozicija noPrint">
+    <table class="table table-sm w-75 table-responsive">
         <thead>
             <tr class="table-light">
                 <th scope="col">r.b.</th>
-                <th scope="col">F.Sirina</th>
-                <th scope="col">F.Visina</th>
-                <th scope="col">Br.Krila</th>
-                <th scope="col">Otvaranje</th>
-                <th scope="col">Nacin Otvaranja</th>
+                <th scope="col">Tip</th>
+                <th scope="col">P O Z I C I J A</th>
+                <th scope="col">Kolicina</th>
+                <th scope="col">Falcna Mera</th>
                 <th scope="col">Opis</th>
-                <th scope="col">Kom.</th>
                 <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let pos of pozicijeAL; index as i; trackBy: trackByFn">
                 <td>{{i + 1}}</td>
-                <td>{{pos.sirina}}</td>
-                <td>{{pos.visina}}</td>
-                <td>{{pos.brojKrila}}</td>
-                <td>{{pos.otvaranje}}</td>
-                <td>{{pos.nacinOtvaranja}}</td>
+                <td *ngIf="pos.nacinOtvaranja == 'kombinovano'">O/N</td>
+                <td *ngIf="pos.nacinOtvaranja == 'okretno'">O</td>
+                <td *ngIf="pos.nacinOtvaranja == 'nagibno'">N</td>
+                <td>{{pos.unesenaSirina}} x {{pos.unesenaVisina}} -  
+                    <span *ngIf="pos.brojKrila == '1'">1Kr. </span>
+                    <span *ngIf="pos.brojKrila == '2'">2Kr. </span>
+                    <span *ngIf="pos.otvaranje == 'levo'"><b>L</b> </span>
+                    <span *ngIf="pos.otvaranje == 'desno'"><b>D</b></span>                                              
+                </td>
+                <td>{{pos.kolicina}}</td>  
+                <td><i>({{pos.sirina}} x {{pos.visina}})</i></td>
                 <td>{{pos.opis}}</td>
-                <td>{{pos.kolicina}}</td>                
                 <th><button class="maliDel" (click)="deleteRow(i)">X</button></th>            
             </tr>
         </tbody>
@@ -183,3 +213,46 @@
 <div class="footer">
     <span>M&J<sup>&#174;</sup></span>
 </div>
+<ng-template #content let-modal>
+	<div class="modal-header text-center">
+        <h6 class="modal-title">Izmenjen nalog za odvajanje</h6>
+        <button type="button" class="noPrint printButton" onclick="this.blur()" (click)="stampajIzmenjenOkov()">Stampaj</button>
+        <button type="button" class="modalCloseButton noPrint" (click)="modal.close('Close click')">X</button>
+        <div class="d-flex justify-content-end">
+            <span class="printNoDisplay datum ">{{today | date}}</span>
+        </div>	
+	</div>
+	<div class="modal-body">
+		<div class="container">
+            <div class="noPrint dodajForma">
+                <form [formGroup]="dodajElement">
+                    <select formControlName="element">
+                        <option *ngFor="let item of dataService.JOVAN" [ngValue]="item.id">
+                            {{item.id}}: {{item.opis}}
+                        </option>
+                    </select>
+                    <input type="number" formControlName="kolicina" placeholder="Kolicina" required>
+                    <button type="button" [disabled]="!dodajElement.valid" class="dodajElementDugme" (click)="dodajItemSubmit()">Dodaj elemenat</button>
+                </form>
+            </div>
+            <table class="table table-sm table-responsive table-hover">
+                <thead>
+                    <tr class="table-light">
+                        <th scope="col">r.b.</th>
+                        <th scope="col">Sifra</th>
+                        <th scope="col">Opis</th>
+                        <th scope="col">Kolicina</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let ok of konacanOkovAL; index as i; trackBy: trackByFn">
+                        <td>{{i + 1}}</td>
+                        <td>{{ok.id}}</td>
+                        <td>{{ok.opis}}</td>
+                        <td class="izmenaKolicine"><input type="number" [(ngModel)]="ok.kolicina"><button class="maliDel noPrint" (click)="deleteItem(i)">X</button></td>                           
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+	</div>
+</ng-template>

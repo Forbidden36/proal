@@ -178,22 +178,7 @@
     background-color: grey;
     color: white;
 }
-@media screen {
-    .printNoDisplay {
-        display: none;
-    }
-}
-@media print {
-    .printNoDisplay {
-        visibility: visible;
-    }
-    .noPrint {
-       display: none;
-    }
-    .izmenaKolicine input[type='number']{
-        border: none
-    }
-}
+
 @media screen and (max-width: 992px){
      .modalDugme {
         display: block

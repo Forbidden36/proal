@@ -36,7 +36,7 @@ export class PVCComponent implements OnInit {
     visina: new UntypedFormControl('', Validators.required),
     brojKrila: new UntypedFormControl(1,  {nonNullable: true}),
     otvaranje: new UntypedFormControl ('levo', {nonNullable:true}),
-    kolicina: new UntypedFormControl('', Validators.required),
+    kolicina: new UntypedFormControl('', [Validators.required, Validators.min(1)]),
     boja: new UntypedFormControl('belo', {nonNullable:true}),
     sigurnosniKip: new UntypedFormControl(false, {nonNullable: true}),
     centralnaRingla: new UntypedFormControl(false, {nonNullable: true}),
@@ -61,8 +61,10 @@ export class PVCComponent implements OnInit {
         falcnaSirina = this.pozicija.value.sirina - 114
       } else if (this.pozicija.value.brojKrila == 2) {
         falcnaSirina = Math.round(this.pozicija.value.sirina / 2 - 80)
-      } else {
+      } else if (this.pozicija.value.brojKrila == 2) {
         falcnaSirina = Math.round(this.pozicija.value.sirina / 3 -75) 
+      } else {
+        falcnaSirina = this.pozicija.value.sirina - 114
       }
     } else {
       falcnaSirina = this.pozicija.value.sirina
@@ -74,6 +76,8 @@ export class PVCComponent implements OnInit {
           nacinOtvaranja: this.pozicija.value.nacinOtvaranja,
           sirina: falcnaSirina,
           visina: falcnaVisina,
+          unesenaSirina: this.pozicija.value.sirina,
+          unesenaVisina: this.pozicija.value.visina,
           brojKrila: 1,
           otvaranje: 'levo',
           kolicina: this.pozicija.value.kolicina,  
@@ -90,6 +94,8 @@ export class PVCComponent implements OnInit {
           nacinOtvaranja: this.pozicija.value.nacinOtvaranja,
           sirina: falcnaSirina,
           visina: falcnaVisina,
+          unesenaSirina: this.pozicija.value.sirina,
+          unesenaVisina: this.pozicija.value.visina,
           brojKrila: 2,
           otvaranje: 'desno',
           kolicina: this.pozicija.value.kolicina,  
@@ -108,6 +114,8 @@ export class PVCComponent implements OnInit {
           nacinOtvaranja: this.pozicija.value.nacinOtvaranja,
           sirina: falcnaSirina,
           visina: falcnaVisina,
+          unesenaSirina: this.pozicija.value.sirina,
+          unesenaVisina: this.pozicija.value.visina,
           brojKrila: 1,
           otvaranje: 'desno',
           kolicina: this.pozicija.value.kolicina,  
@@ -124,6 +132,8 @@ export class PVCComponent implements OnInit {
           nacinOtvaranja: this.pozicija.value.nacinOtvaranja,
           sirina: falcnaSirina,
           visina: falcnaVisina,
+          unesenaSirina: this.pozicija.value.sirina,
+          unesenaVisina: this.pozicija.value.visina,
           brojKrila: 2,
           otvaranje: 'levo',
           kolicina: this.pozicija.value.kolicina,  
@@ -141,6 +151,8 @@ export class PVCComponent implements OnInit {
           nacinOtvaranja: this.pozicija.value.nacinOtvaranja,
           sirina: falcnaSirina,
           visina: falcnaVisina,
+          unesenaSirina: this.pozicija.value.sirina,
+          unesenaVisina: this.pozicija.value.visina,
           brojKrila: this.pozicija.value.brojKrila,
           otvaranje: this.pozicija.value.otvaranje,
           kolicina: this.pozicija.value.kolicina,  

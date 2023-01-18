@@ -56,6 +56,116 @@
 .opcije label input[type='checkbox'] {
     accent-color: rgb(187,30,16);
 }
+.izmenaKolicine input[type='number']{
+    width: 3rem;
+    margin-right: 1rem;
+}
+.dodajForma {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    text-align: center;
+}
+.dodajForma select {
+    padding: 0.5rem;
+    margin-left: 0.4rem;
+    margin-right: 0.4rem;
+    border: 1px solid grey;
+    border-radius: 8px;
+}
+.dodajForma select:focus  {
+    outline: none;
+    border: 1px solid steelblue;
+}
+.dodajForma input[type='number']{
+    padding: 0.45rem;
+    margin-left: 0.4rem;
+    margin-right: 0.4rem;
+    border: 1px solid grey;
+    border-radius: 8px;
+    width: 6rem;
+}
+.dodajForma input[type='number']:focus {
+    outline: none;
+    border: 1px solid steelblue;
+}
+.dodajElementDugme {
+    background-color: transparent;
+    color: rgb(25,135,84);
+    border: 1px solid rgb(25,135,84);
+    padding: 0.45rem 1rem 0.45rem 1rem;
+    
+    margin-left: 0.4rem;
+    margin-right: 0.4rem;
+    border-radius: 8px;
+}
+.dodajElementDugme:hover:enabled{
+    background-color: rgb(25,135,84);
+    color: white;
+}
+.dodajElementDugme:disabled {
+    opacity: 0.7;
+}
+.modal-footer {
+    height: 3rem;
+    background-color: rgb(235,235,235);
+    opacity: 0.7;
+}
+.modalCloseButton {
+    margin-right: 0;
+    margin-left: auto;
+    border: 1px solid grey;
+    border-radius: 6px;
+    background-color: transparent;
+    color: grey;
+}
+.modalCloseButton:hover {
+    color: red;
+    border: 1px solid red;
+}
+.printButton {
+    margin-left: auto; 
+    margin-right:auto; 
+    outline: none;
+    background: transparent;
+    color: grey;
+    border: 1px solid grey;
+    border-radius: 0.3rem;
+    padding: 0.4rem;
+}
+.printButton:hover{
+    background-color: grey;
+    color: white;
+}
+.greskaValidacije {
+    border-bottom: 1px solid red;
+}
+.greskaValidacije:focus{
+    border: 1px solid red
+}
+.nemoguceAB {
+    border-top: 1px solid red;
+}
+.nemoguceAB:focus {
+    border: 1px solid red
+}
+.greske {
+    min-height: 2em;;
+}
+.greske p{
+    padding-left: 8em;
+    color: red;
+    font-size: 9px;
+    margin-bottom: 0.1em;
+}
+.neMoze {
+    min-height: 1em;
+}
+.neMoze p{
+    padding-left: 8em;
+    color: red;
+    font-size: 9px;
+    margin: 0;
+}
 @media screen and (max-width: 992px){
     .modalDugme {
         display: block;

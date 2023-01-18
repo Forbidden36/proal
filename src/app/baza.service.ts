@@ -120,9 +120,18 @@ export class BazaService {
           {id: '1105445', opis: 'ARX SPIN POK.KAP.FALCNE ŠARKE.D-CRNA',kolicina: null, cena: 0.130},
           {id: '1105446', opis: 'ARX SPIN POK.UGAO ŠARKE FALCNE L SREBRNA',kolicina: null, cena: 0.450},
           {id: '1105447', opis: 'ARX SPIN POK.UGAO ŠARKE FALCNE D SREBRNA',kolicina: null, cena: 0.450},
+          {id: '1134365', opis: 'ARX SPIN POK.KAP.UGAO ŠARKE FALCNE L 7016',kolicina: null, cena: 0.130},
+          {id: '1134366', opis: 'ARX SPIN POK.KAP.UGAO ŠARKE FALCNE D 7016',kolicina: null, cena: 0.130},
+          {id: '1134357', opis: 'ARX SPIN POK.KAP.UGAO ŠARKE 7016',kolicina: null, cena: 0.130},
+          {id: '1134358', opis: 'ARX SPIN POK.KAP.UGAO LEŽAJA 7016',kolicina: null, cena: 0.180},
+          {id: '1134359', opis: 'ARX SPIN POK.KAP.UGAO LEŽAJA RAVNA 7016',kolicina: null, cena: 0.080},
+          {id: '1134361', opis: 'ARX SPIN POK.KAP.LEŽAJA MAKAZA 7016',kolicina: null, cena: 0.180},
+          {id: '1134364', opis: 'ARX SPIN POK.KAP. MAKAZA 7016',kolicina: null, cena: 0.080},
           {id: 'HOPE340B', opis: 'RUCICA HOPE BELA', kolicina: null, cena: 1.3},
+          {id: 'HOPE340E6', opis: 'RUCICA ZA PVC E6', kolicina: null, cena: 2.1},
           {id: 'HOPE340-8017', opis: 'RUCICA HOPE BRAON - 8017', kolicina: null, cena: 1.3},
           {id: 'ITAL340C-SIG', opis: 'ITAL RUCICA CRNA SIGURNOSNA HEW YORK E42', kolicina: null, cena: 3.6},
+          {id: 'ITAL340E6-SIG', opis: 'ITAL RUCICA CRNA SIGURNOSNA HEW YORK E42', kolicina: null, cena: 4},
           {id: 'ITAL340B-SIG', opis: 'ITAL RUCICA BELA SIGURNOSNA HEW YORK E42', kolicina: null, cena: 3}
           ];
   constructor() { }

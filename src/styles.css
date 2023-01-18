@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 .closeBar {
-    background-image: url("/assets/images/home back.jpg");
+    background-image: url("./assets/images/home back.jpg");
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -358,9 +358,22 @@
         padding-bottom: 3rem;
     }
 }
-
+@media screen {
+    .printNoDisplay {
+        display: none;
+    }
+}
 @media print {
     .footer {
         display: none;
+    }
+    .printNoDisplay {
+        visibility: visible;
+    }
+    .noPrint {
+       display: none;
+    }
+    .izmenaKolicine input[type='number']{
+        border: none
     }
 }
