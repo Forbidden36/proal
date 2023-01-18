@@ -61,7 +61,7 @@ export class PVCComponent implements OnInit {
         falcnaSirina = this.pozicija.value.sirina - 114
       } else if (this.pozicija.value.brojKrila == 2) {
         falcnaSirina = Math.round(this.pozicija.value.sirina / 2 - 80)
-      } else if (this.pozicija.value.brojKrila == 2) {
+      } else if (this.pozicija.value.brojKrila == 3) {
         falcnaSirina = Math.round(this.pozicija.value.sirina / 3 -75) 
       } else {
         falcnaSirina = this.pozicija.value.sirina - 114

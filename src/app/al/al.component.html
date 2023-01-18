@@ -168,7 +168,7 @@
     </div>
     <div class="col-lg-6 modalDugme">
         <div class="d-grid col-lg-6 mx-auto potvrdiDugme">
-            <button class="btn btn-outline-secondary" type="button" [disabled]="pozicijeAL.length === 0" onclick="this.blur()" >Lista pozicija</button>
+            <button class="btn btn-outline-secondary" type="button" [disabled]="pozicijeAL.length === 0" onclick="this.blur()" (click)="openScrollableContent(longContent)">Lista pozicija</button>
         </div> 
     </div>
     <div class="col-lg-6">
@@ -215,6 +215,51 @@
 <div class="footer">
     <span>M&J<sup>&#174;</sup></span>
 </div>
+<ng-template #longContent let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title">Lista pozicija</h5>
+    </div>
+    <div class="modal-body">
+        <div class="container listaPozicijaModal noPrint">
+            <table class="table table-responsive">
+                <thead>
+                    <tr class="table-light">
+                        <th scope="col">r.b.</th>
+                        <th scope="col">Tip</th>
+                        <th scope="col">Pozicija</th>
+                        <th scope="col">Kol.</th>
+                        <th scope="col">Falc.Mera</th>
+                        <th scope="col">Opis</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let pos of pozicijeAL; index as i; trackBy: trackByFn">
+                        <td>{{i + 1}}</td>
+                        <td *ngIf="pos.nacinOtvaranja == 'kombinovano'">O/N</td>
+                        <td *ngIf="pos.nacinOtvaranja == 'okretno'">O</td>
+                        <td *ngIf="pos.nacinOtvaranja == 'nagibno'">N</td>
+                        <td>{{pos.unesenaSirina}}x{{pos.unesenaVisina}}  
+                            <span *ngIf="pos.brojKrila == '1'">1Kr.</span>
+                            <span *ngIf="pos.brojKrila == '2'">2Kr.</span>
+                            <span *ngIf="pos.otvaranje == 'levo'"><b>L</b> </span>
+                            <span *ngIf="pos.otvaranje == 'desno'"><b>D</b></span>                                                   
+                        </td>
+                        <td>{{pos.kolicina}}</td>  
+                        <td><i>({{pos.sirina}}x{{pos.visina}})</i></td>
+                        <td *ngIf="pos.opis == 'Jednokrilni deo trokrilnog'">1/3</td>
+                        <td *ngIf="pos.opis == 'Dvokrilni deo trokrilnog'">2/3</td>
+                        <td *ngIf="pos.opis == undefined"></td>
+                        <th><button class="maliDel" (click)="deleteRow(i)">X</button></th>            
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+  <div class="modal-footer pb-5 pt-0">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Zatvori</button>
+  </div>
+</ng-template> 
 <ng-template #content let-modal>
 	<div class="modal-header text-center">
         <h6 class="modal-title">Izmenjen nalog za odvajanje</h6>
