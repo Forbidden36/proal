@@ -1,1 +1,24 @@
-<p>podizno-klizni works!</p>
+<div class="container">
+    <div class="row">
+
+            <img src={{JednosinskiSaJednimKrilom}} class="card-img-top"  alt="JednosinskiSaJednimKrilom" (click)="openXl(content); srediSliku(JednosinskiSaJednimKrilom)">
+
+            <img src={{JednosinskiSaDvaKrila}} class="card-img-top"  alt="JednosinskiSaDvaKrila" (click)="openXl(content); srediSliku(JednosinskiSaDvaKrila)">
+
+    </div>
+</div>
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title">Modal title</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+        <img src={{slika}} class="card-img-top"  alt="PVC okov">
+        <div class="card-body">
+          <h5 class="card-title">Okov za PVC</h5>
+        </div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+	</div>
+</ng-template>
