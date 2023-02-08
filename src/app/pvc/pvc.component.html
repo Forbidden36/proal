@@ -92,24 +92,26 @@
                     <label for="sirina">Sirina <span><small><i>[mm]</i></small></span>: </label>
                     <input  type="number" class="sirVisInput" [ngClass]="{'greskaValidacije': pozicija.get('sirina')?.touched && pozicija.errors?.['sirinaVelikaONO'] ||
                     pozicija.get('sirina')?.touched && pozicija.errors?.['sirinaMalaON'] || pozicija.get('sirina')?.touched && pozicija.errors?.['sirinaMalaNO'] ||
-                    pozicija.get('sirina')?.touched && pozicija.errors?.['sirinaMalaON'], 'nemoguceAB': pozicija.get('sirina')?.touched && pozicija.get('visina')?.touched && pozicija.errors?.['nemogucOdnosSirineIVisine']}" id="sirina" required placeholder="Sirina" formControlName="sirina">
-            
-                    <label for="visina">Visina <span><small><i>[mm]</i></small></span>: </label>
-                    <input  type="number" id="visina" class="sirVisInput" 
-                    [ngClass]="{'greskaValidacije': pozicija.get('visina')?.touched && pozicija.errors?.['visinaMala'] ||
-                                                    pozicija.get('visina')?.touched && pozicija.errors?.['visinaMalaCentRing'] ||
-                                                    pozicija.get('visina')?.touched && pozicija.errors?.['visinaMalaCentRingSigKip'] ||
-                                                    pozicija.get('visina')?.touched && pozicija.errors?.['visinaMalaSigKip'] ||
-                                                    pozicija.get('visina')?.touched && pozicija.errors?.['visinaVelika'] ||
-                                                    pozicija.get('visina')?.touched && pozicija.errors?.['visinaMalaOkretna'] ||
-                                                    pozicija.get('visina')?.touched && pozicija.errors?.['visinaMalaNagibna'] ||
-                                                    pozicija.get('visina')?.touched && pozicija.errors?.['visinaVelikaNagibna'],
+                    pozicija.get('sirina')?.touched && pozicija.errors?.['sirinaMalaON'], 'nemoguceAB': pozicija.get('sirina')?.touched && pozicija.get('visina')?.touched && pozicija.errors?.['nemogucOdnosSirineIVisine']}" id="sirina" required placeholder="Sirina [mm]" formControlName="sirina">
+                    <div class="visina">
+                        <label for="visina">Visina <span><small><i>[mm]</i></small></span>: </label>
+                        <input  type="number" id="visina" class="sirVisInput" 
+                        [ngClass]="{'greskaValidacije': pozicija.get('visina')?.touched && pozicija.errors?.['visinaMala'] ||
+                                                        pozicija.get('visina')?.touched && pozicija.errors?.['visinaMalaCentRing'] ||
+                                                        pozicija.get('visina')?.touched && pozicija.errors?.['visinaMalaCentRingSigKip'] ||
+                                                        pozicija.get('visina')?.touched && pozicija.errors?.['visinaMalaSigKip'] ||
+                                                        pozicija.get('visina')?.touched && pozicija.errors?.['visinaVelika'] ||
+                                                        pozicija.get('visina')?.touched && pozicija.errors?.['visinaMalaOkretna'] ||
+                                                        pozicija.get('visina')?.touched && pozicija.errors?.['visinaMalaNagibna'] ||
+                                                        pozicija.get('visina')?.touched && pozicija.errors?.['visinaVelikaNagibna'],
+    
+                                    'nemoguceAB':       pozicija.get('visina')?.touched && pozicija.get('sirina')?.touched && pozicija.errors?.['nemogucOdnosSirineIVisine']}"
+      
+                                                    
+                                                         
+                        required placeholder="Visina [mm]" formControlName="visina"><br>
+                    </div>
 
-                                'nemoguceAB':       pozicija.get('visina')?.touched && pozicija.get('sirina')?.touched && pozicija.errors?.['nemogucOdnosSirineIVisine']}"
-  
-                                                
-                                                     
-                    required placeholder="Visina" formControlName="visina"><br>
                 </div>
                 <div class="greske">
                     <p *ngIf = "pozicija.get('sirina')?.touched && pozicija.errors?.['sirinaVelikaONO']">Maximalna falcna sirina iznosi 1400<span class="jedMere">[mm]</span></p>
@@ -263,12 +265,17 @@
             <div class="noPrint dodajForma">
                 <form [formGroup]="dodajElement">
                     <select formControlName="element">
+                        <option value="" disabled selected hidden>Izaberi element za dodavanje</option>
                         <option *ngFor="let item of dataService.JOVAN" [ngValue]="item.id">
                             {{item.id}}: {{item.opis}}
                         </option>
                     </select>
                     <input type="number" formControlName="kolicina" placeholder="Kolicina" required>
                     <button type="button" [disabled]="!dodajElement.valid" class="dodajElementDugme" (click)="dodajItemSubmit()">Dodaj elemenat</button>
+                    <div class="greskeElementa">
+                        <p *ngIf="dodajElement.get('element')?.touched && 
+                        dodajElement.get('element')!.errors?.['itemPostoji']">Element je vec upisan pod brojem {{sporniBr}}</p>
+                    </div>
                 </form>
             </div>
             <table class="table table-sm table-responsive table-hover">

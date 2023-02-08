@@ -1,24 +1,220 @@
-<div class="container">
-    <div class="row">
-
-            <img src={{JednosinskiSaJednimKrilom}} class="card-img-top"  alt="JednosinskiSaJednimKrilom" (click)="openXl(content); srediSliku(JednosinskiSaJednimKrilom)">
-
-            <img src={{JednosinskiSaDvaKrila}} class="card-img-top"  alt="JednosinskiSaDvaKrila" (click)="openXl(content); srediSliku(JednosinskiSaDvaKrila)">
-
+<div class="d-flex justify-content-end">
+        <span class="printNoDisplay datum">{{today | date}}</span>
+    </div>
+    <div class="printNoDisplay container w-25 text-center">    
+        <p class="donjaCrta"></p>
+    </div>
+    <div class="printNoDisplay container">
+        <table class="table table-sm table-responsive">
+            <thead>
+                <tr class="table-light">
+                    <th scope="col">r.b.</th>
+                    <th scope="col">Sifra</th>
+                    <th scope="col">Opis</th>
+                    <th scope="col">Kolicina</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="tabelaKonacnogOkova" *ngFor="let ok of konacanOkov; index as i; trackBy: trackByFn">
+                    <td>{{i + 1}}</td>
+                    <td>{{ok.id}}</td>
+                    <td>{{ok.opis}}</td>
+                    <td>{{ok.kolicina}}</td>                           
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<div class="main container noPrint pb-0">
+        <div class="closeBar row row-cols-1">
+                <div class="col-8">    
+                        <p style="margin-top: auto; margin-bottom: auto;">Podizno klizni</p>
+                </div>
+                <div class="col-4 closeButton" >
+                        <a routerLink="/HOME" routerLinkActive="active" ariaCurrentWhenActive="page">X</a>
+                </div>
+        </div>
+    <div class="row velikeSlike" >
+        <h6><i>Jedna sina</i></h6>
+        <div class="col-lg-3 mb-3 mb-lg-0" *ngFor="let jedan of jednaSina" >
+                <img src={{jedan.imgSource}} alt="{{jedan.naziv}}" (click)="openXl(content); srediSliku(jedan)">
+        </div>
+    </div>
+    <div class="row velikeSlike" >
+        <h6><i>Dve sine</i></h6>
+        <div class="col-lg-3 mb-3 mb-lg-0 " *ngFor="let dva of dveSine" >
+                <img src={{dva.imgSource}} alt="{{dva.naziv}}" (click)="openXl(content); srediSliku(dva)">
+        </div>
+    </div>
+    <div class="row velikeSlike" >
+        <h6><i>Tri sine</i></h6>
+        <div class="col-lg-4 mb-3 mb-lg-0" *ngFor="let tri of triSine" >
+                <img src={{tri.imgSource}} alt="{{tri.naziv}}" (click)="openXl(content); srediSliku(tri)">
+        </div>
     </div>
 </div>
-<ng-template #content let-modal>
-	<div class="modal-header">
-		<h4 class="modal-title">Modal title</h4>
-		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+<ng-template class="noPrint" #content let-modal>
+	<div class="modal-header bar">
+		<h5 class="modal-title">Detalji pozicije</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
 	</div>
-	<div class="modal-body">
-        <img src={{slika}} class="card-img-top"  alt="PVC okov">
-        <div class="card-body">
-          <h5 class="card-title">Okov za PVC</h5>
-        </div>
+	<div class="modal-body maleSlike">
+                <div class="container row">
+                        <div class="col-lg-6 zaSliku">
+                                <p>{{detaljiSine}}</p>
+                                <img src={{slika}} class="card-img-top"  alt="img {{slika}}">
+                        </div>
+                        <div class="col-lg-6 zaFormu">
+                                <form [formGroup]="pozicijaSSI">
+                                        <div class="colorPicker mb-1">
+                                                <label class="belo">
+                                                    <input type="radio" value="belo" id="belo" formControlName="boja"><div class="button"><span></span></div>
+                                                </label>
+                                                <label class="sivo">
+                                                    <input type="radio" value="sivo" id="sivo" formControlName="boja"><div class="button"><span></span></div>
+                                                </label>
+                                                <label class="crno">
+                                                    <input type="radio" value="crno" id="crno" formControlName="boja"><div class="button"><span></span></div>
+                                                </label>  
+                                        </div>
+                                        <div class="tipMere mb-1">
+                                                <input  type="radio" name="tipMere" id="meraStoka" value="meraStoka" onclick="this.blur()" formControlName="tipMere">
+                                                <label for="meraStoka">Mera stoka</label>
+                                                <input type="radio" name="tipMere" id="meraKrila" value="meraKrila" onclick="this.blur()"  formControlName="tipMere">
+                                                <label for="meraKrila">Mera krila</label>
+                                        </div>
+                                        <div class="sirVis mt-3">
+                                                <label for="sirina">Sirina <span><small><i>[mm]</i></small></span>:</label>
+                                                <input  type="number" class="sirVisInput"
+                                                [ngClass]="{'greskaValidacije':pozicijaSSI.get('sirina')?.touched && pozicijaSSI.errors?.['sirinaMala'] ||
+                                                                               pozicijaSSI.get('sirina')?.touched && pozicijaSSI.errors?.['sirinaVelika']}"
+                                                placeholder="Sirina" required formControlName="sirina">
+                                                <div class="visina">
+                                                        <label  for="visina">Visina <span><small><i>[mm]</i></small></span>:</label>
+                                                        <input  type="number" class="sirVisInput"
+                                                        [ngClass]="{'greskaValidacije':pozicijaSSI.get('visina')?.touched && pozicijaSSI.errors?.['visinaMala'] ||
+                                                                               pozicijaSSI.get('visina')?.touched && pozicijaSSI.errors?.['visinaVelika']}" placeholder="Visina" required formControlName="visina">
+                                                </div>
+
+                                        </div>
+                                        <div class="greske">
+                                                <p *ngIf="pozicijaSSI.get('sirina')?.touched && pozicijaSSI.errors?.['sirinaMala']">Minimalna sirina krila iznosi 720<span class="jedMere">[mm]</span></p>
+                                                <p *ngIf="pozicijaSSI.get('sirina')?.touched && pozicijaSSI.errors?.['sirinaVelika']">Maximalna sirina krila iznosi 3235<span class="jedMere">[mm]</span></p>
+
+                                                <p *ngIf="pozicijaSSI.get('visina')?.touched && pozicijaSSI.errors?.['visinaMala']">Minimalna visina krila iznosi 1200<span class="jedMere">[mm]</span></p>
+                                                <p *ngIf="pozicijaSSI.get('visina')?.touched && pozicijaSSI.errors?.['visinaVelika']">Maximalna visina krila iznosi 2700<span class="jedMere">[mm]</span></p>
+                                        </div>
+                                        <div class="kolicina">
+                                                <label for="kolicina">Kolicina: </label>
+                                                <input  type="number" placeholder="Kolicina" required formControlName="kolicina"><br>
+                                            </div>
+                                            <button class="btn btn-outline-success" type="button" [disabled]="!pozicijaSSI.valid" (click)="onSubmit()">Potvrdi</button>
+                                </form>
+                        </div>
+                </div>
 	</div>
-	<div class="modal-footer">
-		<button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+	<div class="modal-footer footerBar">
+		<button type="button" class="btn btn-light" (click)="modal.close('Close click'); partialClear()">Zatvori</button>
 	</div>
 </ng-template>
+<div class="noPrint container mx-auto m-0 row dugmadZaMaliEkran">
+        <div class="col-lg-6">
+            <div class="d-grid col-lg-6 mx-auto potvrdiDugme">
+                <div class="btn-group" role="group">
+                    <button class="btn btn-outline-primary" type="button" [disabled]="pozicijeSSI.length === 0"  onclick="this.blur()" (click)="izracunajStampaj()" >Nalog za odvajanje</button>
+                    <button class="btn btn-outline-primary" type="button" [disabled]="pozicijeSSI.length === 0" onclick="this.blur()" (click)="openFullscreen(djoka)" >Izmeni</button>
+                </div> 
+            </div> 
+        </div>
+        <div class="col-lg-6 modalDugme">
+            <!-- <div class="d-grid col-lg-6 mx-auto potvrdiDugme">
+                <button class="btn btn-outline-secondary" type="button" onclick="this.blur()">Lista pozicija</button>
+            </div>  -->
+        </div>
+        <div class="col-lg-6">
+            <div class="d-grid col-lg-6 mx-auto potvrdiDugme">
+                <button class="btn btn-outline-dark" type="button" [disabled]="pozicijeSSI.length === 0" (click)="izracunajCenu()" onclick="this.blur()">{{cena}}</button>
+            </div> 
+        </div>
+    </div>
+<div class="container noPrint prikazPozicijeSSI">
+        <div class="row row-cols-lg-2">
+                <div class="pozSSI" *ngFor = "let posSSI of pozicijeSSI; index as i; trackBy: trackByFn">
+                        <div class="col">
+                                <div class="card mb-3">
+                                        <div class="row">
+                                                <div class="col-6">
+                                                        <span class="zaTipSine"><i><small>- {{posSSI.tipSine}}</small></i></span><br>
+                                                        <img src="{{posSSI.img}}" alt="{{posSSI.naziv}}" class="slikeUnesenePos">
+                                                </div>
+                                                <div class="col-4">
+                                                        <div class="card-body">
+                                                                <h6>{{posSSI.unesenaSirina}}<small> x </small>{{posSSI.unesenaVisina}}</h6>
+                                                                <p>{{posSSI.kolicina}} kom. <span class="bojaPozicije" [ngClass]="{'bojaSiva': posSSI.boja == 'sivo', 'bojaCrna': posSSI.boja == 'crno'}"></span></p>
+                                                        </div>
+                                                </div>
+                                                <div class="col-2 zaMaliDel">
+                                                        <div>
+                                                                <button class="maliDel" (click)="deleteRow(i)" >X</button>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                </div>
+
+                        </div>
+
+                </div>
+        </div>
+</div>
+<ng-template #djoka let-modal>
+	<div class="modal-header text-center">
+        <h6 class="modal-title">Izmenjen nalog za odvajanje</h6>
+        <button type="button" class="noPrint printButton" onclick="this.blur()" (click)="stampajIzmenjenOkov()">Stampaj</button>
+        <button type="button" class="modalCloseButton noPrint" (click)="modal.close('Close click'); resetujDodajFormu()">X</button>
+        <div class="d-flex justify-content-end">
+            <span class="printNoDisplay datum ">{{today | date}}</span>
+        </div>	
+	</div>
+	<div class="modal-body">
+		<div class="container">
+            <div class="noPrint dodajForma">
+                <form [formGroup]="dodajElement">
+                    <select formControlName="element" >
+                        <option value="" disabled selected hidden>Izaberi element za dodavanje</option>
+                        <option *ngFor="let item of SSIpos.hauTau" [ngValue]="item.id">
+                            {{item.id}}: {{item.opis}}
+                        </option>
+                    </select>
+                    
+                    <input type="number" formControlName="kolicina" placeholder="Kolicina" required>
+                    <button type="button" [disabled]="!dodajElement.valid" class="dodajElementDugme" (click)="dodajItemSubmit()">Dodaj elemenat</button>
+                    <div class="greskeElementa">
+                        <p *ngIf="dodajElement.get('element')?.touched && 
+                        dodajElement.get('element')!.errors?.['itemPostoji']">Element je vec upisan pod brojem {{sporniBr}}</p>
+                    </div>
+
+                </form>
+            </div>
+            <table class="table table-sm table-responsive table-hover">
+                <thead>
+                    <tr class="table-light">
+                        <th scope="col">r.b.</th>
+                        <th scope="col">Sifra</th>
+                        <th scope="col">Opis</th>
+                        <th scope="col">Kolicina</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let ok of konacanOkov; index as i; trackBy: trackByFn">
+                        <td>{{i + 1}}</td>
+                        <td>{{ok.id}}</td>
+                        <td>{{ok.opis}}</td>
+                        <td class="izmenaKolicine"><input type="number" [(ngModel)]="ok.kolicina"><button class="maliDel noPrint" (click)="deleteItem(i)">X</button></td>                           
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+	</div>
+</ng-template>
+<div class="footer">
+        <span>M&J<sup>&#174;</sup></span>
+</div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, UntypedFormControl, UntypedFormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Prozor } from '../prozor';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BazaService } from '../baza.service';
@@ -26,6 +26,7 @@ export class ALComponent implements OnInit {
   konacanOkovAL: any =[]
   today: number = Date.now()
   cena:any = 'Izracunaj cenu'
+  sporniBr: number = 0
 
   pozicijaAL = new UntypedFormGroup ({
     nacinOtvaranja: new UntypedFormControl('kombinovano'),
@@ -50,7 +51,6 @@ export class ALComponent implements OnInit {
   get kolicina() { return this.pozicijaAL.get('kolicina'); }
 
   onSubmit(){
-    console.log(this.pozicijaAL.value)
     let falcnaVisinaAL = 0;
     let falcnaSirinaAL = 0;
     if (this.pozicijaAL.value.tipMere === 'nazivnaMera'){
@@ -164,7 +164,6 @@ export class ALComponent implements OnInit {
         this.pozicijeAL.push(this.posAL)
         
       }
-      console.log(this.pozicijeAL)
         //on submit clears mostly variable fields
         this.pozicijaAL.controls['sirina'].reset()
         this.pozicijaAL.controls['visina'].reset()
@@ -330,7 +329,6 @@ export class ALComponent implements OnInit {
           this.konacanOkovAL.push(this.temp)
         }
     }
-    console.log(this.konacanOkovAL)
   }
   izracunajStampajAL(){
     this.izracunajAL()
@@ -375,7 +373,6 @@ export class ALComponent implements OnInit {
   }
   tipMereRadio(e: any){
     this.tipUneseneMere = e.target.value
-    console.log(this.tipUneseneMere)
     if (this.tipUneseneMere === 'nazivnaMera'){
       this.pozicijaAL.controls['tipStoka'].enable()
     } else {
@@ -417,25 +414,38 @@ export class ALComponent implements OnInit {
     }
   }
   dodajElement = new UntypedFormGroup({
-    element: new FormControl('Select item'),
-    kolicina: new FormControl('', Validators.required)
+    element: new FormControl('', [Validators.required, this.validateUnos()]),
+    kolicina: new FormControl('', [Validators.required, Validators.min(1)])
   })
-  dodajItemSubmit(){
-    let item: any
-    let sporniBr: number
-    item = this.dataService.JOVAN.find(o=>o.id == this.dodajElement.value.element)
-    item.kolicina = this.dodajElement.value.kolicina;
-    if (this.konacanOkovAL.length > 0){
-      for (let i = 0; i<this.konacanOkovAL.length; i++){
-        if (this.konacanOkovAL[i].id === item.id){
-          sporniBr = i+1
-          alert('Elemenat je vec upisan pod brojem ' + sporniBr)
-          return
-        }
+  validateUnos(): ValidatorFn {
+    return (control:AbstractControl) : ValidationErrors | null => {
+
+      const item = control.value
+      if(!item){
+        return null;
       }
+      if (this.konacanOkovAL.length > 0){
+        for (let i = 0; i<this.konacanOkovAL.length; i++){
+          if (this.konacanOkovAL[i].id == item){
+            this.sporniBr = i+1
+            return {itemPostoji: true}
+          }
+        } 
+      }
+        return null
     }
-      this.konacanOkovAL.push(item)
-      this.dodajElement.reset()
+  }
+  dodajItemSubmit(){
+      let itemNO: any
+      itemNO = this.dataService.JOVAN.find(o=>o.id == this.dodajElement.value.element)
+      itemNO.kolicina = this.dodajElement.value.kolicina;
+  
+            this.konacanOkovAL.push(itemNO)
+            this.dodajElement.reset()
+
+  }
+  resetujDodajFormu (){
+    this.dodajElement.reset()
   }
   deleteItem(i: number){
     this.konacanOkovAL.splice(i, 1)

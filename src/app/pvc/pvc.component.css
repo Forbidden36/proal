@@ -19,7 +19,7 @@
     min-height: 2em;;
 }
 .greske p{
-    padding-left: 8em;
+    padding-left: 9em;
     color: red;
     font-size: 9px;
     margin-bottom: 0.1em;
@@ -135,7 +135,6 @@
     color: rgb(25,135,84);
     border: 1px solid rgb(25,135,84);
     padding: 0.45rem 1rem 0.45rem 1rem;
-    
     margin-left: 0.4rem;
     margin-right: 0.4rem;
     border-radius: 8px;
@@ -146,6 +145,14 @@
 }
 .dodajElementDugme:disabled {
     opacity: 0.7;
+}
+.greskeElementa {
+    margin-top: 0.4rem;
+    min-height: 2em;
+}
+.greskeElementa p {
+    color: red;
+    font-size: 14px;
 }
 .modal-footer {
     height: 3rem;
@@ -178,10 +185,27 @@
     background-color: grey;
     color: white;
 }
+.visina {
+    margin-left: 1rem;
+    display: inline-block;
+}
+@media screen and (max-width: 1200px){
+    .visina{
+        margin-left: 0;
+        display: block;
+    }
+}
 
 @media screen and (max-width: 992px){
      .modalDugme {
         display: block
+    }
+    .dodajForma select {
+        max-width: 80%;
+        margin-bottom: 1rem;
+    }
+    .brKr {
+        margin-top: 1rem;
     }
 } 
 @media print{

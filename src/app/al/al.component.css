@@ -161,7 +161,7 @@
     min-height: 2em;;
 }
 .greske p{
-    padding-left: 8em;
+    padding-left: 9em;
     color: red;
     font-size: 9px;
     margin-bottom: 0.1em;
@@ -170,10 +170,28 @@
     min-height: 1em;
 }
 .neMoze p{
-    padding-left: 8em;
+    padding-left: 9em;
     color: red;
     font-size: 9px;
     margin: 0;
+}
+.greskeElementa {
+    margin-top: 0.4rem;
+    min-height: 2em;
+}
+.greskeElementa p {
+    color: red;
+    font-size: 14px;
+}
+.visina {
+    margin-left: 1rem;
+    display: inline-block;
+}
+@media screen and (max-width: 1200px){
+    .visina{
+        margin-left: 0;
+        display: block;
+    }
 }
 @media screen and (max-width: 992px){
     .modalDugme {
@@ -184,6 +202,13 @@
     }
     .tipMere h6 {
         text-align: center;
+    }
+    .dodajForma select {
+        max-width: 80%;
+        margin-bottom: 1rem;
+    }
+    .brKr {
+        margin-top: 1rem;
     }
 }
 @media screen and (max-width: 438px){

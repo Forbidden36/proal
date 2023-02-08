@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, UntypedFormControl, UntypedFormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BazaService } from '../baza.service';
 import { IzracunavanjaService } from '../izracunavanja.service';
@@ -28,6 +28,7 @@ export class PVCComponent implements OnInit {
   cena:any = 'Izracunaj cenu'
   public isCollapsed = false;
   collapseButtonName = 'Sakrij'
+  sporniBr: number = 0
 
   pozicija = new UntypedFormGroup ({
     nacinOtvaranja: new UntypedFormControl('kombinovano'),
@@ -385,27 +386,38 @@ export class PVCComponent implements OnInit {
       }
     }
     dodajElement = new UntypedFormGroup({
-      element: new FormControl('Select item'),
+      element: new FormControl('', [Validators.required, this.validateUnos()]),
       kolicina: new FormControl('', Validators.required)
     })
 
-    dodajItemSubmit(){
-      let item: any
-      let sporniBr: number
-      item = this.dataService.JOVAN.find(o=>o.id == this.dodajElement.value.element)
-      item.kolicina = this.dodajElement.value.kolicina;
-      if (this.konacanOkov.length > 0){
-        for (let i = 0; i<this.konacanOkov.length; i++){
-          if (this.konacanOkov[i].id === item.id){
-            sporniBr = i+1
-            alert('Elemenat je vec upisan pod brojem ' + sporniBr)
-            return
-          }
+    validateUnos(): ValidatorFn {
+      return (control:AbstractControl) : ValidationErrors | null => {
+  
+        const item = control.value
+        if(!item){
+          return null;
         }
+        if (this.konacanOkov.length > 0){
+          for (let i = 0; i<this.konacanOkov.length; i++){
+            if (this.konacanOkov[i].id == item){
+              this.sporniBr = i+1
+              return {itemPostoji: true}
+            }
+          } 
+        }
+          return null
       }
-        this.konacanOkov.push(item)
-        this.dodajElement.reset()
     }
+
+    dodajItemSubmit(){
+      let itemNO: any
+      itemNO = this.dataService.JOVAN.find(o=>o.id == this.dodajElement.value.element)
+      itemNO.kolicina = this.dodajElement.value.kolicina;
+  
+            this.konacanOkov.push(itemNO)
+            this.dodajElement.reset()
+
+  }
     izracunajCenu(){
       let tempCena = 0
       this.izracunaj()

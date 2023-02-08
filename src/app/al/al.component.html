@@ -103,8 +103,8 @@
                     <label for="sirina">Sirina <span><small><i>[mm]</i></small></span>: </label>
                     <input  type="number" class="sirVisInput" [ngClass]="{'greskaValidacije': pozicijaAL.get('sirina')?.touched && pozicijaAL.errors?.['sirinaVelikaONO'] ||
                     pozicijaAL.get('sirina')?.touched && pozicijaAL.errors?.['sirinaMalaON'] || pozicijaAL.get('sirina')?.touched && pozicijaAL.errors?.['sirinaMalaNO'] ||
-                    pozicijaAL.get('sirina')?.touched && pozicijaAL.errors?.['sirinaMalaON'], 'nemoguceAB': pozicijaAL.get('sirina')?.touched && pozicijaAL.get('visina')?.touched && pozicijaAL.errors?.['nemogucOdnosSirineIVisine']}" id="sirina" required placeholder="Sirina" formControlName="sirina">
-            
+                    pozicijaAL.get('sirina')?.touched && pozicijaAL.errors?.['sirinaMalaON'], 'nemoguceAB': pozicijaAL.get('sirina')?.touched && pozicijaAL.get('visina')?.touched && pozicijaAL.errors?.['nemogucOdnosSirineIVisine']}" id="sirina" required placeholder="Sirina [mm]" formControlName="sirina">
+                <div class="visina">
                     <label for="visina">Visina <span><small><i>[mm]</i></small></span>: </label>
                     <input  type="number" id="visina" class="sirVisInput" 
                     [ngClass]="{'greskaValidacije': pozicijaAL.get('visina')?.touched && pozicijaAL.errors?.['visinaMala'] ||
@@ -120,7 +120,8 @@
   
                                                 
                                                      
-                    required placeholder="Visina" formControlName="visina"><br>
+                    required placeholder="Visina [mm]" formControlName="visina"><br>
+                </div>
                 </div>
                 <div class="greske">
                     <p *ngIf = "pozicijaAL.get('sirina')?.touched && pozicijaAL.errors?.['sirinaVelikaONO']">Maximalna falcna sirina iznosi 1400<span class="jedMere">[mm]</span></p>
@@ -144,7 +145,7 @@
 
             </div>
             <div class="col-lg-3 opcije">
-                <h6>Dodatne opcije</h6>
+                <h6><i>Dodatne opcije</i></h6>
                 <label for="sigurnosniKip"><span>Sigurnosni kip</span><input type="checkbox" value="sigurnosniKip" formControlName="sigurnosniKip"></label>
                 <label for="centralnaRingla">Centralna ringla<input type="checkbox" value="centralnaRingla" formControlName="centralnaRingla"></label>
                 <label for="sigurnosnaRucica">Sigurnosna rucica<input type="checkbox" value="sigurnosnaRucica" formControlName="sigurnosnaRucica"></label>
@@ -161,9 +162,7 @@
             <div class="btn-group" role="group">
                 <button class="btn btn-outline-primary" type="button" (click)="izracunajStampajAL()" [disabled]="pozicijeAL.length === 0">Nalog za odvajanje</button>
                 <button class="btn btn-outline-primary" type="button" [disabled]="pozicijeAL.length === 0" onclick="this.blur()" (click)="openFullscreen(content)" >Izmeni</button>
-
-            </div>
-            
+            </div> 
         </div> 
     </div>
     <div class="col-lg-6 modalDugme">
@@ -264,7 +263,7 @@
 	<div class="modal-header text-center">
         <h6 class="modal-title">Izmenjen nalog za odvajanje</h6>
         <button type="button" class="noPrint printButton" onclick="this.blur()" (click)="stampajIzmenjenOkov()">Stampaj</button>
-        <button type="button" class="modalCloseButton noPrint" (click)="modal.close('Close click')">X</button>
+        <button type="button" class="modalCloseButton noPrint" (click)="modal.close('Close click'); resetujDodajFormu()">X</button>
         <div class="d-flex justify-content-end">
             <span class="printNoDisplay datum ">{{today | date}}</span>
         </div>	
@@ -274,12 +273,17 @@
             <div class="noPrint dodajForma">
                 <form [formGroup]="dodajElement">
                     <select formControlName="element">
+                        <option value="" disabled selected hidden>Izaberi element za dodavanje</option>
                         <option *ngFor="let item of dataService.JOVAN" [ngValue]="item.id">
                             {{item.id}}: {{item.opis}}
                         </option>
                     </select>
                     <input type="number" formControlName="kolicina" placeholder="Kolicina" required>
                     <button type="button" [disabled]="!dodajElement.valid" class="dodajElementDugme" (click)="dodajItemSubmit()">Dodaj elemenat</button>
+                    <div class="greskeElementa">
+                        <p *ngIf="dodajElement.get('element')?.touched && 
+                        dodajElement.get('element')!.errors?.['itemPostoji']">Element je vec upisan pod brojem {{sporniBr}}</p>
+                    </div>
                 </form>
             </div>
             <table class="table table-sm table-responsive table-hover">
