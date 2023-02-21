@@ -79,20 +79,24 @@
                                         <div class="tipMere mb-1">
                                                 <input  type="radio" name="tipMere" id="meraStoka" value="meraStoka" onclick="this.blur()" formControlName="tipMere">
                                                 <label for="meraStoka">Mera stoka</label>
+                                                <div class="meraKrila">
+
+                                                
                                                 <input type="radio" name="tipMere" id="meraKrila" value="meraKrila" onclick="this.blur()"  formControlName="tipMere">
                                                 <label for="meraKrila">Mera krila</label>
+                                            </div>
                                         </div>
                                         <div class="sirVis mt-3">
                                                 <label for="sirina">Sirina <span><small><i>[mm]</i></small></span>:</label>
                                                 <input  type="number" class="sirVisInput"
                                                 [ngClass]="{'greskaValidacije':pozicijaSSI.get('sirina')?.touched && pozicijaSSI.errors?.['sirinaMala'] ||
                                                                                pozicijaSSI.get('sirina')?.touched && pozicijaSSI.errors?.['sirinaVelika']}"
-                                                placeholder="Sirina" required formControlName="sirina">
+                                                placeholder="Sirina [mm]" required formControlName="sirina">
                                                 <div class="visina">
                                                         <label  for="visina">Visina <span><small><i>[mm]</i></small></span>:</label>
                                                         <input  type="number" class="sirVisInput"
                                                         [ngClass]="{'greskaValidacije':pozicijaSSI.get('visina')?.touched && pozicijaSSI.errors?.['visinaMala'] ||
-                                                                               pozicijaSSI.get('visina')?.touched && pozicijaSSI.errors?.['visinaVelika']}" placeholder="Visina" required formControlName="visina">
+                                                                               pozicijaSSI.get('visina')?.touched && pozicijaSSI.errors?.['visinaVelika']}" placeholder="Visina [mm]" required formControlName="visina">
                                                 </div>
 
                                         </div>

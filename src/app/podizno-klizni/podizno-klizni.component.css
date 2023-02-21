@@ -48,6 +48,9 @@
     height: 65px;
     padding-left: 1rem;
 }
+.zaFormu{
+    border-left: 1px solid white;
+}
 .tipMere {
     border: none;
 }
@@ -240,6 +243,9 @@
     border-bottom: 1px solid grey;
     margin-bottom: 1.5em;
 }
+.meraKrila{
+    display: inline-block;
+}
 @media screen and (max-width: 1200px){
     .visina{
         margin-left: 0;
@@ -250,5 +256,13 @@
     .dodajForma select {
         max-width: 80%;
         margin-bottom: 1rem;
+    }
+    .zaFormu{
+        border: none;
+    }
+}
+@media screen and (max-width: 384px){
+    .meraKrila {
+        display: block;
     }
 }

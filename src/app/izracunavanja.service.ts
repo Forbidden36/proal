@@ -307,19 +307,19 @@ export class IzracunavanjaService {
           if(sigRuc === false){
             maske = {1083271: brKr, 1083273: brKr, 1083275: brKr, 1083277: brKr, 1083279: brKr, 'HOPE340B': 1}
           } else {
-            maske = {1083271: brKr, 1083273: brKr, 1083275: brKr, 1083277: brKr, 1083279: brKr, 'ITAL340B-SIG': 1}
+            maske = {1083271: brKr, 1083273: brKr, 1083275: brKr, 1083277: brKr, 1083279: brKr, 'ITAL340BSIG': 1}
           }
         } else if(boja === 'braon') {
           if(sigRuc === false){
             maske = {1083272: brKr, 1083274: brKr, 1083276: brKr, 1083278: brKr, 1083280: brKr, 'HOPE340-8017': 1}
           } else {
-            maske = {1083272: brKr, 1083274: brKr, 1083276: brKr, 1083278: brKr, 1083280: brKr, 'ITAL340C-SIG': 1}
+            maske = {1083272: brKr, 1083274: brKr, 1083276: brKr, 1083278: brKr, 1083280: brKr, 'ITAL340CSIG': 1}
           }
         } else {
           if(sigRuc === false){
-            maske = {1087793: brKr, 1087794: brKr, 1087795: brKr, 1087796: brKr, 1087797: brKr, 'ITAL340C-SIG': 1}
+            maske = {1087793: brKr, 1087794: brKr, 1087795: brKr, 1087796: brKr, 1087797: brKr, 'ITAL340CSIG': 1}
           } else {
-            maske = {1087793: brKr, 1087794: brKr, 1087795: brKr, 1087796: brKr, 1087797: brKr, 'ITAL340C-SIG': 1}
+            maske = {1087793: brKr, 1087794: brKr, 1087795: brKr, 1087796: brKr, 1087797: brKr, 'ITAL340CSIG': 1}
           }
         }
       return maske
@@ -358,9 +358,9 @@ export class IzracunavanjaService {
             }
           } else {
             if(b < 1601){
-              maske = {1083271: brKr, 1083273: brKr, 1083275: brKr, 1083277: brKr, 1083279: brKr, 'ITAL340B-SIG': 1}
+              maske = {1083271: brKr, 1083273: brKr, 1083275: brKr, 1083277: brKr, 1083279: brKr, 'ITAL340BSIG': 1}
             } else {
-              maske = {1083271: brKr, 1083273: brKr, 1083275: brKr, 1083277: brKr * 2, 1083279: brKr * 2, 'ITAL340B-SIG': 1}
+              maske = {1083271: brKr, 1083273: brKr, 1083275: brKr, 1083277: brKr * 2, 1083279: brKr * 2, 'ITAL340BSIG': 1}
             }
           }
         } else if (boja === 'braon') {
@@ -372,16 +372,16 @@ export class IzracunavanjaService {
             }
           } else {
             if (b < 1601){
-              maske = {1083272: brKr, 1083274: brKr, 1083276: brKr, 1083278: brKr, 1083280: brKr, 'ITAL340C-SIG': 1}
+              maske = {1083272: brKr, 1083274: brKr, 1083276: brKr, 1083278: brKr, 1083280: brKr, 'ITAL340CSIG': 1}
             } else {
-              maske = {1083272: brKr, 1083274: brKr, 1083276: brKr, 1083278: brKr*2, 1083280: brKr*2, 'ITAL340C-SIG': 1}
+              maske = {1083272: brKr, 1083274: brKr, 1083276: brKr, 1083278: brKr*2, 1083280: brKr*2, 'ITAL340CSIG': 1}
             }
           }
         } else if (boja === 'crno'){
             if (b < 1601){
-              maske = {1087793: brKr, 1087794: brKr, 1087795: brKr, 1087796: brKr, 1087797: brKr, 'ITAL340C-SIG': 1}
+              maske = {1087793: brKr, 1087794: brKr, 1087795: brKr, 1087796: brKr, 1087797: brKr, 'ITAL340CSIG': 1}
             } else {
-              maske = {1087793: brKr, 1087794: brKr, 1087795: brKr, 1087796: brKr*2, 1087797: brKr*2, 'ITAL340C-SIG': 1}
+              maske = {1087793: brKr, 1087794: brKr, 1087795: brKr, 1087796: brKr*2, 1087797: brKr*2, 'ITAL340CSIG': 1}
             }
         }
       return maske
@@ -422,49 +422,49 @@ export class IzracunavanjaService {
           if(sigRuc == false){
             nagibni = {1083250: 2, 1083277: 2, 1083279: 2, 1083268: 2, 'HOPE340B': 1, 1099152: 1}
           } else {
-            nagibni = {1083250: 2, 1083277: 2, 1083279: 2, 1083268: 2, 'ITAL340B-SIG': 1, 1099152: 1}
+            nagibni = {1083250: 2, 1083277: 2, 1083279: 2, 1083268: 2, 'ITAL340BSIG': 1, 1099152: 1}
           }
         } else if(boja == 'braon'){
           if(sigRuc == false) {
             nagibni = {1083250: 2, 1083278: 2, 1083280: 2, 1083268: 2, 'HOPE340-8017': 1, 1099152: 1}
           } else {
-            nagibni = {1083250: 2, 1083278: 2, 1083280: 2, 1083268: 2, 'ITAL340C-SIG': 1, 1099152: 1}
+            nagibni = {1083250: 2, 1083278: 2, 1083280: 2, 1083268: 2, 'ITAL340CSIG': 1, 1099152: 1}
           }
         } else {
             //Crna ima samo sigurnosna
-            nagibni = {1083250: 2, 1083296: 2, 1083297: 2, 1083268: 2, 'ITAL340C-SIG': 1, 1099152: 1}
+            nagibni = {1083250: 2, 1083296: 2, 1083297: 2, 1083268: 2, 'ITAL340CSIG': 1, 1099152: 1}
           }          
       } else if(b > 800 && b < 1601){
         if(boja == 'belo'){
           if(sigRuc == false){
             nagibni = {1083250: 2, 1083277: 2, 1083279: 2, 1083268: 2, 'HOPE340B': 1, 1099152: 2}
           } else {
-            nagibni = {1083250: 2, 1083277: 2, 1083279: 2, 1083268: 2, 'ITAL340B-SIG': 1, 1099152: 2}
+            nagibni = {1083250: 2, 1083277: 2, 1083279: 2, 1083268: 2, 'ITAL340BSIG': 1, 1099152: 2}
           }
         } else if(boja == 'braon'){
           if(sigRuc == false) {
             nagibni = {1083250: 2, 1083278: 2, 1083280: 2, 1083268: 2, 'HOPE340-8017': 1, 1099152: 2}
           } else {
-            nagibni = {1083250: 2, 1083278: 2, 1083280: 2, 1083268: 2, 'ITAL340C-SIG': 1, 1099152: 2}
+            nagibni = {1083250: 2, 1083278: 2, 1083280: 2, 1083268: 2, 'ITAL340CSIG': 1, 1099152: 2}
           }
         } else {
-          nagibni = {1083250: 2, 1083296: 2, 1083297: 2, 1083268: 2, 'ITAL340C-SIG': 1, 1099152: 2}
+          nagibni = {1083250: 2, 1083296: 2, 1083297: 2, 1083268: 2, 'ITAL340CSIG': 1, 1099152: 2}
         }   
       } else if (b > 1600){
         if(boja == 'belo'){
           if(sigRuc == false){
             nagibni = {1083250: 3, 1083277: 3, 1083279: 3, 1083268: 3, 'HOPE340B': 1, 1099152: 2}
           } else {
-            nagibni = {1083250: 3, 1083277: 3, 1083279: 3, 1083268: 3, 'ITAL340B-SIG': 1, 1099152: 2}
+            nagibni = {1083250: 3, 1083277: 3, 1083279: 3, 1083268: 3, 'ITAL340BSIG': 1, 1099152: 2}
           }
         } else if(boja == 'braon'){
           if(sigRuc == false) {
             nagibni = {1083250: 3, 1083278: 3, 1083280: 3, 1083268: 3, 'HOPE340-8017': 1, 1099152: 2}
           } else {
-            nagibni = {1083250: 3, 1083278: 3, 1083280: 3, 1083268: 3, 'ITAL340C-SIG': 1, 1099152: 2}
+            nagibni = {1083250: 3, 1083278: 3, 1083280: 3, 1083268: 3, 'ITAL340CSIG': 1, 1099152: 2}
           }
         } else {
-          nagibni = {1083250: 3, 1083296: 3, 1083297: 3, 1083268: 3, 'ITAL340C-SIG': 1, 1099152: 3}
+          nagibni = {1083250: 3, 1083296: 3, 1083297: 3, 1083268: 3, 'ITAL340CSIG': 1, 1099152: 3}
         } 
       }
       return nagibni

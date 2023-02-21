@@ -24,7 +24,7 @@ export class PodiznoKlizniComponent implements OnInit {
   konacanOkov: any = [] 
   cena:any = 'Izracunaj cenu'
   today: number = Date.now()
-  sporniBr: number = 0
+  sporniBr: number = 0;
   
   pozicijaSSI = new UntypedFormGroup ({
     tipMere: new UntypedFormControl('meraKrila'),

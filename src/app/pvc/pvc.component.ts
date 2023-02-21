@@ -88,7 +88,6 @@ export class PVCComponent implements OnInit {
           sigurnosnaRucica: this.pozicija.value.sigurnosnaRucica,
           opis: "Jednokrilni deo trokrilnog"
         }
-        // console.log(this.pos)
         this.pozicije.push(this.pos)
 
         this.pos = {
@@ -106,7 +105,6 @@ export class PVCComponent implements OnInit {
           sigurnosnaRucica: this.pozicija.value.sigurnosnaRucica,
           opis: "Dvokrilni deo trokrilnog"
         }
-        // console.log(this.pos)
         this.pozicije.push(this.pos)
       } 
       // drugi slucaj trokrilnog
@@ -126,7 +124,6 @@ export class PVCComponent implements OnInit {
           sigurnosnaRucica: this.pozicija.value.sigurnosnaRucica,
           opis: "Jednokrilni deo trokrilnog"
         }
-        // console.log(this.pos)
         this.pozicije.push(this.pos)
 
         this.pos = {
@@ -144,7 +141,6 @@ export class PVCComponent implements OnInit {
           sigurnosnaRucica: this.pozicija.value.sigurnosnaRucica,
           opis: "Dvokrilni deo trokrilnog"
         }
-        // console.log(this.pos)
         this.pozicije.push(this.pos)
       }  
     } else {
@@ -162,7 +158,6 @@ export class PVCComponent implements OnInit {
           centralnaRingla: this.pozicija.value.centralnaRingla,
           sigurnosnaRucica: this.pozicija.value.sigurnosnaRucica
         }
-        console.log(this.pos)
         this.pozicije.push(this.pos)
       }
         //on submit clears mostly variable fields
@@ -171,7 +166,6 @@ export class PVCComponent implements OnInit {
         this.pozicija.controls['kolicina'].reset()
   }
   izracunaj(){
-    // console.log(this.pozicije)
     this.obrisiListu()
     let prihvZadnjeg = 0;
     let prihvatnikSigurnosnog = 0;
@@ -343,7 +337,6 @@ export class PVCComponent implements OnInit {
             this.konacanOkov.push(this.temp)
           }
       }
-      console.log(this.konacanOkov)
     };
     partialClear(){
       this.pozicija.controls['sirina'].reset()
@@ -367,7 +360,6 @@ export class PVCComponent implements OnInit {
     }
     otvRadio(e: any){
       this.kakoSeOtvara = e.target.value
-      // console.log(this.kakoSeOtvara)
       if(this.kakoSeOtvara == 'kombinovano'){
         this.partialClear()
         this.pozicija.enable()
