@@ -4,6 +4,7 @@ export interface Prozor {
     visina: number;
     unesenaSirina: number;
     unesenaVisina: number;
+    tipSarke ?: string;
     brojKrila: number;
     otvaranje: string;
     kolicina: number;

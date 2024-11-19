@@ -25,6 +25,7 @@ export class PodiznoKlizniComponent implements OnInit {
   cena:any = 'Izracunaj cenu'
   today: number = Date.now()
   sporniBr: number = 0;
+  res: { [key: string]: { duzinaSipke: number; duzineZaOpt: number[] } }[] = [];
   
   pozicijaSSI = new UntypedFormGroup ({
     tipMere: new UntypedFormControl('meraKrila'),
@@ -158,10 +159,18 @@ export class PodiznoKlizniComponent implements OnInit {
       tipSine: this.detaljiPozicije.tipSine,
       img: this.detaljiPozicije.imgSource,
       kolicina: this.pozicijaSSI.value.kolicina,
-      boja: this.pozicijaSSI.value.boja
+      boja: this.pozicijaSSI.value.boja,
+      profiliZaOpt: {
+        profili: this.detaljiPozicije.profZaOpt.racunanja(this.pozicijaSSI.value.sirina, this.pozicijaSSI.value.visina,this.pozicijaSSI.value.kolicina).profili,
+        gume: this.detaljiPozicije.profZaOpt.racunanja(this.pozicijaSSI.value.sirina, this.pozicijaSSI.value.visina,this.pozicijaSSI.value.kolicina).gume,
+        prateci: this.detaljiPozicije.profZaOpt.racunanja(this.pozicijaSSI.value.sirina, this.pozicijaSSI.value.visina,this.pozicijaSSI.value.kolicina).prateci
+      }
+      
     }
+
     this.pozicijeSSI.push(this.posSSI)
     this.partialClear()
+    console.log(this.pozicijeSSI)
   }
   izracunaj(){
     this.obrisiListu()
@@ -178,11 +187,64 @@ export class PodiznoKlizniComponent implements OnInit {
         if (typeof this.okov[i][y] == 'number') {      
           this.okov[i][y] *= this.pozicijeSSI[i].kolicina;
         }}
+
     }
     this.sumArray(this.okov)
-    console.log(this.konacanOkov)
+
+    // console.log(this.konacanOkov)
+   // this.optimizujSipke()
+  }
+/*
+  optimizujSipke(){
+    this.res = [];
+    this.saberiDuzineZaSecenje()
+        //glavni deo funkcije koja ce raditi optimizaciju sipki
+      for (let i = 0; i<this.res.length; i++){
+        for (const key in this.res[i]) {
+      if (this.res[i].hasOwnProperty(key)) {
+        const { duzinaSipke, duzineZaOpt } = this.res[i][key]; 
+        this.serviceRacunanja.cuttingOptimization(duzinaSipke, duzineZaOpt, key); // Poziv funkcije za optimizaciju
+        }
+      }
+    }
   }
 
+  //ovo radi nekako, kako ne znam ni sam
+  saberiDuzineZaSecenje(){
+    let temp: any = []
+    for(let i = 0; i < this.pozicijeSSI.length; i++){
+      for (const key in this.pozicijeSSI[i].profiliZaOpt.profili) {
+        if (Object.prototype.hasOwnProperty.call(this.pozicijeSSI[i].profiliZaOpt.profili, key)) {
+          const duzineZaOpt = this.pozicijeSSI[i].profiliZaOpt.profili[key].duzineZaOpt;
+  
+          // povecavamo sipke za secenje obzirom na kolicinu
+          this.pozicijeSSI[i].profiliZaOpt.profili[key].duzineZaOpt = duzineZaOpt.flatMap(item => Array(this.pozicijeSSI[i].kolicina).fill(item));
+        }
+      }
+      temp[i] = {...this.pozicijeSSI[i].profiliZaOpt.profili}
+    }
+  
+    for (const obj of temp) {
+      const keys = Object.keys(obj);
+    
+      for (const key of keys) {
+        const { duzinaSipke, duzineZaOpt } = obj[key];
+    
+        const stariObj = this.res.find((item) => item.hasOwnProperty(key));
+    
+        if (stariObj) {
+          stariObj[key].duzineZaOpt = stariObj[key].duzineZaOpt.concat(duzineZaOpt);
+        } else {
+          const noviObj: { [key: string]: { duzinaSipke: number; duzineZaOpt: number[] } } = {
+            [key]: { duzinaSipke: duzinaSipke, duzineZaOpt: [...duzineZaOpt] },
+          };
+          this.res.push(noviObj);
+        }
+      }
+    }
+    return this.res
+  }
+*/
   sumArray (arr: any) {
     let temp: any
     let res: any = {}

@@ -64,6 +64,7 @@
 }
 .colorPicker{
     border-right: none;
+    border: 1px solid white
 }
 .colorPicker label{
     display: inline-block;

@@ -7,10 +7,78 @@ export class FakeBazaSsiPozicijaService {
 
   SSIpozicije = [
     {naziv: 'JednosinskiSaJednimKrilom', imgSource: "assets/images/1Sina_1Krilo.jpg", kriloV: 1, kriloH: 0, tipSine: 'Jedna sina',  
-    meraKrila: {izracunajKrila(a: number, b: number) {let falcSirina:number = (a/2)-2; let falcVisina:number = b-94; return { falcSirina, falcVisina}}}},
+    meraKrila: {izracunajKrila(a: number, b: number) {let falcSirina:number = (a/2)-2; let falcVisina:number = b-94; return { falcSirina, falcVisina}}},
+    profZaOpt: {racunanja(a:number, b:number, kol: number){
+              let profili: {[key: string]: {duzinaSipke: number, duzineZaOpt: number[]}} = {
+                          'SCI-9200/9001':{duzinaSipke: 6000, duzineZaOpt:[a,a,b,b]} , 
+                          'SCI-9204/9205':{duzinaSipke: 6000,duzineZaOpt:[(a/2)-2,(a/2)-2,b-94,b-94]}, 
+                          'SCI-9009-9010': {duzinaSipke:6000, duzineZaOpt:[b-52]},
+                          'SCI-9074': {duzinaSipke: 6000, duzineZaOpt:[b-296, b-296, a/2-156, a/2-156, b-100, b-100, a/2-58, a/2-58]},
+                          'SCI-10591':{duzinaSipke: 6000, duzineZaOpt:[b-94]},
+                          'SCI-9206': {duzinaSipke: 6000, duzineZaOpt:[a/2-45, a/2-45, b-115]},
+                          'SCI-10592': {duzinaSipke: 6000, duzineZaOpt: [b-115]}}; 
+              let gume: {[key: string] : number}[] = [
+                          {'SC-117': Math.ceil((a+2*b)/1000)*kol},
+                          {'SC-115': Math.ceil((a+b*2)/1000)*kol},
+                          {'SC-103-1': Math.ceil((2*a+4*b)/1000)*kol},
+                          {'P-001': Math.ceil((2*a+4*b)/1000)*kol},
+                          {'SC-312': Math.ceil((b*4)/1000)*kol},
+                          {'SC-317-1': Math.ceil((b*2)/1000)*kol},
+                          {'SC-318': Math.ceil((b*2)/1000)*kol},
+                          {'SC-123': Math.ceil((a)/1000)*kol},
+                          {'SC-118-1': Math.ceil((a+b)/1000)*kol},
+                          {'N/8': Math.ceil((a+b)/1000)*kol}];
+              let prateci: {[key:string]: number}[] = [
+                          {'SC-003': 4*kol},
+                          {'SC-024': 8*kol},
+                          {'SC-025': 4*kol},
+                          {'SC-279': 4*kol},
+                          {'SC-277': 4*kol},
+                          {'SC-045': 8*kol},
+                          {'SC-306': 1*kol},
+                          {'SC-307': 1*kol},
+                          {'SC-302': 4*kol},
+                          {'SC-272': 1*kol},
+                          {'SC-273': 1*kol},
+                          {'SC-274': 1*kol},
+                          {'SC-275': 1*kol},
+                          {'SC-226': 8*kol},
+                          {'SC-032': 2*kol},
+                          {'AL800SV': 8*kol}];
+              let razno: {[key:string]: number}[] = [
+                          {'SC-310': Math.ceil((a-110)/3000)},
+                          {'SC-330': Math.ceil(((b-110)*2)/3000)}];           
+              return {profili, gume, prateci, razno}             
+            }
+          }
+  },
   
     {naziv: 'JednosinskiSaDvaKrila', imgSource: "assets/images/1Sina_2Krila.jpg", kriloV: 1, kriloH: 1, tipSine: 'Jedna sina', 
-    meraKrila: {izracunajKrila(a: number, b: number) {let falcSirina:number = (a/4)+23; let falcVisina:number = b-94; return { falcSirina, falcVisina}}}},
+    meraKrila: {izracunajKrila(a: number, b: number) {let falcSirina:number = (a/4)+23; let falcVisina:number = b-94; return { falcSirina, falcVisina}}},
+    profZaOpt: {racunanja(a:number, b:number, kol: number){
+              let profili: {[key: string]: {duzinaSipke: number, duzineZaOpt: number[]}} = {
+                          'SCI-9200/9001':{duzinaSipke: 6000, duzineZaOpt:[a,a,b,b]},
+                          'SCI-9204/9205':{duzinaSipke: 6000,duzineZaOpt:[(a/4)+23,(a/4)+23,(a/4)+23,(a/4)+23, b-94,b-94,b-94,b-94]},
+                          'SCI-9009-9010': {duzinaSipke:6000, duzineZaOpt:[b-52, b-52]},
+                          'SCI-9074': {duzinaSipke: 6000, duzineZaOpt:[b-296,b-296,b-296,b-296, a/4-131,a/4-131,a/4-131,a/4-131, b-100,b-100,b-100,b-100, a/4-39,a/4-39,a/4-39,a/4-39,]},
+                          'SCI-10591':{duzinaSipke: 6000, duzineZaOpt:[b-94,b-94]},
+                          'SCI-9206': {duzinaSipke: 6000, duzineZaOpt:[a/2-78, a/2-78]},
+                          'SCI-10592': {duzinaSipke: 6000, duzineZaOpt: [b-115, b-115]}};
+              let gume: {[key: string] : number}[] = [
+                          {'SC-117': Math.ceil((a+2*b)/1000)*kol},
+                          {'SC-115': Math.ceil((a+b*2)/1000)*kol},
+                          {'SC-103-1': Math.ceil((2*a+8*b+1000)/1000)*kol},
+                          {'P-001': Math.ceil((2*a+8*b+1000)/1000)*kol},
+                          {'SC-312': Math.ceil((b*4)/1000)*kol},
+                          {'SC-317-1': Math.ceil((b*2)/1000)*kol},
+                          {'SC-318': Math.ceil((b*2)/1000)*kol},
+                          {'SC-123': Math.ceil((a)/1000)*kol},
+                          {'SC-118-1': Math.ceil((a+b)/1000)*kol},
+                          {'N/8': Math.ceil((a+b)/1000)*kol}];
+              }
+        }
+    },
+
 
     {naziv: 'dvosinskiSaJednimKrilom', imgSource: "assets/images/dvosinac sa jednim krilom.png", kriloV: 1, kriloH: 0, tipSine: 'Dve sine', stoper: 1,
     meraKrila: {izracunajKrila(a: number, b: number) {let falcSirina:number = (a/2)+4; let falcVisina:number = b-80; return { falcSirina, falcVisina}}}},
@@ -30,16 +98,6 @@ export class FakeBazaSsiPozicijaService {
     {naziv: 'trosinskiSaSestKrila', imgSource: "assets/images/Trosinac sa sest krila.png", kriloV: 1, kriloH: 3, tipSine: 'Tri sine',
     meraKrila: {izracunajKrila(a: number, b: number) {let falcSirina:number = (a/6)+45; let falcVisina:number = b-80; return { falcSirina, falcVisina}}}},
   ]
-  // JednosinskiSaJednimKrilom = {imgSource: "assets/images/1Sina_1Krilo.jpg", kriloV: 1, kriloH: 0, tipSine: 'Jedna sina', opisPozicije: 'jednaSinaJednoKrilo', 
-  // meraKrila: {izracunajKrila(a: number, b: number) {let falcSirina:number = (a/2)-2; let falcVisina:number = b-94; return { falcSirina, falcVisina}}} }
-
-  // JednosinskiSaDvaKrila = {imgSource: "assets/images/1Sina_2Krila.jpg", kriloV: 1, kriloH: 1, tipSine: 'Jedna sina', meraKrila: {izracunajKrila(a: number, b: number) {let falcSirina:number = (a/4)+23; let falcVisina:number = b-94; return { falcSirina, falcVisina}}}};
-  // dvosinskiSaJednimKrilom = {imgSource: "assets/images/dvosinac sa jednim krilom.png", kriloV: 1, kriloH: 0, tipSine: 'Dve sine'};
-  // dvosinskiSaDvaKrila = {imgSource:"assets/images/dvosinac sa dva krila.png", kriloV:2, kriloH: 0, tipSine: 'Dve sine'}
-  // dvosinskiSaTriKrila = {imgSource: "assets/images/dvosinac sa tri krila.png", kriloV: 0, kriloH: 1, tipSine: 'Dve sine'}
-  // dvosinskiSaCetiriKrila = {imgSource: "assets/images/dvosinac sa cetiri krila.png", kriloV: 1, kriloH: 1, tipSine: 'Dve sine'}
-  // trosinskiSaTriKrila = {imgSource: "assets/images/Trosinac sa tri krila.png", kriloV: 1, kriloH: 1, tipSine:'Tri sine'};
-  // trosinskiSaSestKrila = {imgSource: "assets/images/Trosinac sa sest krila.png", kriloV: 1, kriloH: 3, tipSine: 'Tri sine'};
 
   hauTau = [
     {id: '302311', opis: 'HS330 OSNOVNA GARNITURA',kolicina: null, cena: 59.000},

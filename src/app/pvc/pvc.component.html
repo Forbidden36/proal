@@ -48,9 +48,16 @@
         <div class="row">
             <div class="tipMere col-lg-2">
                 <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
-                <h6 class="mb-2"><i>Tip mera</i></h6>
-                    <label for="nazivnaM"><input  type="radio"  name="tipMere" id="nazivnaM" value="nazivnaMera" formControlName="tipMere"><span>Nazivna mera</span></label>
-                    <label for="falcnaM"><input  type="radio"  name="tipMere" id="falcnaM" value="falcnaMera" formControlName="tipMere"><span>Falcna mera</span></label>
+                    <div class="meraISarka">
+                        <h6 class="mb-2"><i>Tip mera</i></h6>
+                        <label for="nazivnaM"><input  type="radio"  name="tipMere" id="nazivnaM" value="nazivnaMera" formControlName="tipMere"><span>Nazivna mera</span></label>
+                        <label for="falcnaM"><input  type="radio"  name="tipMere" id="falcnaM" value="falcnaMera" formControlName="tipMere"><span>Falcna mera</span></label>
+                    </div>
+                    <div>
+                        <h6 class="mb-2 mt-2"><i>Tip sarke</i></h6>
+                        <label for="peroS"><input  type="radio"  name="tipSarke" id="nazivnaM" value="peroSarka" formControlName="tipSarke"><span>Pero sarka</span></label>
+                        <label for="falcnaS"><input  type="radio"  name="tipSarke" id="falcnaM" value="falcnaSarka" formControlName="tipSarke"><span>Falcna Sarka</span></label>
+                    </div>
                 </div>
             </div>
             <div class="colorPicker col-lg-2">
@@ -62,6 +69,9 @@
                 <label class="braon">
                     <input type="radio" value="braon" id="braon" formControlName="boja"><div class="button"><span></span></div>
                 </label>
+                <label class="antracit">
+                    <input type="radio" value="antracit" id="antracit" formControlName="boja"><div class="button"><span></span></div>
+                </label> 
                 <label class="crno">
                     <input type="radio" value="crno" id="crno" formControlName="boja"><div class="button"><span></span></div>
                 </label>  

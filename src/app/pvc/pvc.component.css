@@ -12,6 +12,10 @@
     -webkit-transform: scale(1.5, 1.5);
     -o-transform: scale(1.5, 1.5);
 }
+.meraISarka {
+    padding-bottom: 1em;
+    border-bottom:1px solid white ;
+}
 .kolicina input[type=number]:focus {
     border: 1px solid steelblue;
 } 
@@ -39,6 +43,15 @@
 .braon input:checked ~ .button span {
     border: 1px solid steelblue;
 }
+.antracit .button span {
+    background-color: #575d5e;
+}
+
+.antracit input:checked ~ .button span {
+    transform: scale(1.4);
+    border: 1px solid steelblue;
+}
+
 .crno input:checked ~ .button span {
     border: 1px solid steelblue;
 }
@@ -48,7 +61,7 @@
 .otv input[type='radio']{
     accent-color: steelblue;
 }
- .deoForme {
+.deoForme {
     border-right:1px solid white ;
 }
 .opcije label input[type='checkbox']{

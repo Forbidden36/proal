@@ -434,7 +434,7 @@ export class IzracunavanjaAlService {
       } else if (boja === 'sivo'){
         rucicaAL = {'HOPE340E6': 1}
       } else if (boja === 'antracit'){
-        console.log('U pripremi')
+        rucicaAL = {'ITAL340CSIG': 1}
       } else if (boja === 'crno'){
         rucicaAL = {'ITAL340CSIG': 1}
       }
@@ -442,11 +442,11 @@ export class IzracunavanjaAlService {
         if(boja === 'belo'){
         rucicaAL = {'ITAL340B-SIG': 1}
       } else if (boja === 'braon'){
-        rucicaAL = {'ITAL340CSIG': 1}
+        rucicaAL = {'ITAL340BRSIG': 1}
       } else if (boja === 'sivo'){
         rucicaAL = {'ITAL340E6-SIG': 1}
       } else if (boja === 'antracit'){
-        console.log('U pripremi')
+        rucicaAL = {'ITAL340CSIG': 1}
       } else if (boja === 'crno'){
         rucicaAL = {'ITAL340CSIG': 1}
       }

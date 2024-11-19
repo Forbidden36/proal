@@ -38,7 +38,7 @@ export class IzracunavanjaSSIService {
     return letva
   }
 
-  izaberiPrihvatnike(v:number, h: number){
+  izaberiPrihvatnike(v: number, h: number){
     let prihvatnikV = {}
     let prihvatnikH = {}
     if (v > 0) {
@@ -61,6 +61,74 @@ export class IzracunavanjaSSIService {
     }
       return sve;
   }
+
+  prilagodiNiz(e:number){
+    let obj = e;
+
+    const arr = Array.from(
+      Object.entries(obj).flatMap(([key, value]) => Array.from({length: value}, () => Number(key) as number))
+    );
+    console.log(arr)
+  }
+/*
+  cuttingOptimization(barLength: number, pieceLengths: number[], key:string) {
+
+    // Sort the piece lengths in descending order
+    pieceLengths.sort((a: any, b: any) => b - a);
+  
+    // Initialize an empty array to store the cuts for each bar
+    const barCuts: { remainingLength: number, cuts: { start: number, length: number }[] }[] = [];
+  
+    // Loop through each piece and try to fit it onto a bar
+    for (let i = 0; i < pieceLengths.length; i++) {
+      const pieceLength = pieceLengths[i];
+  
+      // Adjust the piece length by adding the cutting saw length
+      const adjustedLength = pieceLength + 6;
+  
+      // Try to fit the adjusted piece onto an existing bar
+      let barIndex = -1;
+      for (let j = 0; j < barCuts.length; j++) {
+        const currentBarLength = barCuts[j].remainingLength;
+        if (currentBarLength >= adjustedLength) {
+          barIndex = j;
+          break;
+        }
+      }
+  
+      // If the piece cannot be added to an existing bar, create a new bar
+      if (barIndex === -1) {
+        barCuts.push({ remainingLength: barLength - adjustedLength, cuts: [{ start: 0, length: adjustedLength }] });
+      } else {
+        // Add the piece to the existing bar
+        const barCutsWithPiece = barCuts[barIndex];
+        const start = barLength - barCutsWithPiece.remainingLength;
+        barCutsWithPiece.cuts.push({ start, length: adjustedLength });
+        barCutsWithPiece.remainingLength -= adjustedLength;
+      }
+    }
+  
+    // Log the number of bars needed
+    console.log(`Number of bars ${key} needed: ${barCuts.length}`);
+  
+    // Loop through each bar and log the cutting report OVO CEMO KORISTITI ZA PRIKAZ KROJNE LISTE
+    // for (let i = 0; i < barCuts.length; i++) {
+    //   const barCut = barCuts[i];
+    //   console.log(`Bar ${i + 1}:`);
+    //   console.log(`Remaining length: ${barCut.remainingLength}`);
+    //   console.log("Cuts: ");
+    //   for (let j = 0; j < barCut.cuts.length; j++) {
+    //     const cut = barCut.cuts[j];
+    //     console.log(`- Start: ${cut.start}, Length: ${cut.length}`);
+    //   }
+    // }
+  
+    // Return the number of bars needed and the cuts for each bar
+    return { barsNeeded: barCuts.length, barCuts: barCuts };
+  }
+  
+
+*/
 
   constructor() { }
 }

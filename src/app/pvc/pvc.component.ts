@@ -33,6 +33,7 @@ export class PVCComponent implements OnInit {
   pozicija = new UntypedFormGroup ({
     nacinOtvaranja: new UntypedFormControl('kombinovano'),
     tipMere: new UntypedFormControl('falcnaMera'),
+    tipSarke: new UntypedFormControl('peroSarka'),
     sirina: new UntypedFormControl('', [Validators.required]),
     visina: new UntypedFormControl('', Validators.required),
     brojKrila: new UntypedFormControl(1,  {nonNullable: true}),
@@ -79,6 +80,7 @@ export class PVCComponent implements OnInit {
           visina: falcnaVisina,
           unesenaSirina: this.pozicija.value.sirina,
           unesenaVisina: this.pozicija.value.visina,
+          tipSarke: this.pozicija.value.tipSarke,
           brojKrila: 1,
           otvaranje: 'levo',
           kolicina: this.pozicija.value.kolicina,  
@@ -96,6 +98,7 @@ export class PVCComponent implements OnInit {
           visina: falcnaVisina,
           unesenaSirina: this.pozicija.value.sirina,
           unesenaVisina: this.pozicija.value.visina,
+          tipSarke: this.pozicija.value.tipSarke,
           brojKrila: 2,
           otvaranje: 'desno',
           kolicina: this.pozicija.value.kolicina,  
@@ -115,6 +118,7 @@ export class PVCComponent implements OnInit {
           visina: falcnaVisina,
           unesenaSirina: this.pozicija.value.sirina,
           unesenaVisina: this.pozicija.value.visina,
+          tipSarke: this.pozicija.value.tipSarke,
           brojKrila: 1,
           otvaranje: 'desno',
           kolicina: this.pozicija.value.kolicina,  
@@ -132,6 +136,7 @@ export class PVCComponent implements OnInit {
           visina: falcnaVisina,
           unesenaSirina: this.pozicija.value.sirina,
           unesenaVisina: this.pozicija.value.visina,
+          tipSarke: this.pozicija.value.tipSarke,
           brojKrila: 2,
           otvaranje: 'levo',
           kolicina: this.pozicija.value.kolicina,  
@@ -150,6 +155,7 @@ export class PVCComponent implements OnInit {
           visina: falcnaVisina,
           unesenaSirina: this.pozicija.value.sirina,
           unesenaVisina: this.pozicija.value.visina,
+          tipSarke: this.pozicija.value.tipSarke,
           brojKrila: this.pozicija.value.brojKrila,
           otvaranje: this.pozicija.value.otvaranje,
           kolicina: this.pozicija.value.kolicina,  
@@ -160,6 +166,7 @@ export class PVCComponent implements OnInit {
         }
         this.pozicije.push(this.pos)
       }
+        console.log(this.pos)
         //on submit clears mostly variable fields
         this.pozicija.controls['sirina'].reset()
         this.pozicija.controls['visina'].reset()
@@ -174,12 +181,13 @@ export class PVCComponent implements OnInit {
       if(this.pozicije[i].nacinOtvaranja == "kombinovano"){
       if(this.pozicije[i].brojKrila == 1){       
         this.okov[i]={...this.serviceRacunanja.jednokrilni, 
+                      ...this.serviceRacunanja.izaberiDonjuSarku(this.pozicije[i].tipSarke, this.pozicije[i].brojKrila, this.pozicije[i].otvaranje),
                       ...this.serviceRacunanja.izaberiGetribu(this.pozicije[i].visina, this.pozicije[i].sigurnosniKip),
                       ...this.serviceRacunanja.izaberiMakazu(this.pozicije[i].sirina, this.pozicije[i].otvaranje),
                       ...this.serviceRacunanja.izaberiUgaonik(this.pozicije[i].sirina, this.pozicije[i].visina, this.pozicije[i].sigurnosniKip),
                       ...this.serviceRacunanja.izaberiZadnjiZatv(this.pozicije[i].sirina, this.pozicije[i].visina, this.pozicije[i].sigurnosniKip),
                       ...this.serviceRacunanja.izaberiKip(this.pozicije[i].sirina, this.pozicije[i].visina, this.pozicije[i].sigurnosniKip, this.pozicije[i].otvaranje,this.pozicije[i].brojKrila),
-                      ...this.serviceRacunanja.izborMaskica(this.pozicije[i].brojKrila, this.pozicije[i].boja, this.pozicije[i].sigurnosnaRucica)
+                      ...this.serviceRacunanja.izborMaskica(this.pozicije[i].brojKrila, this.pozicije[i].boja, this.pozicije[i].sigurnosnaRucica, this.pozicije[i].otvaranje, this.pozicije[i].tipSarke)
                     }
       
         if (this.okov[i].hasOwnProperty('prihvGetribe')){
@@ -212,13 +220,14 @@ export class PVCComponent implements OnInit {
 
       if(this.pozicije[i].brojKrila == 2){
         this.okov[i] = {...this.serviceRacunanja.dvokrilni,
+                        ...this.serviceRacunanja.izaberiDonjuSarku(this.pozicije[i].tipSarke, this.pozicije[i].brojKrila, this.pozicije[i].otvaranje),
                         ...this.serviceRacunanja.izaberiGetribu(this.pozicije[i].visina,this.pozicije[i].sigurnosniKip),
                         ...this.serviceRacunanja.izaberiMakazuDvokrilnog(this.pozicije[i].sirina, this.pozicije[i].otvaranje),
                         ...this.serviceRacunanja.izaberiUgaonikDvokrilnog(this.pozicije[i].sirina, this.pozicije[i].visina, this.pozicije[i].sigurnosniKip, this.pozicije[i].centralnaRingla),
                         ...this.serviceRacunanja.izaberiRingle(this.pozicije[i].visina, this.pozicije[i].centralnaRingla),
                         ...this.serviceRacunanja.izaberiZadnjiZatv(this.pozicije[i].sirina, this.pozicije[i].visina, this.pozicije[i].sigurnosniKip),
                         ...this.serviceRacunanja.izaberiKip(this.pozicije[i].sirina, this.pozicije[i].visina, this.pozicije[i].sigurnosniKip, this.pozicije[i].otvaranje,this.pozicije[i].brojKrila),
-                        ...this.serviceRacunanja.izborMaskica(this.pozicije[i].brojKrila, this.pozicije[i].boja, this.pozicije[i].sigurnosnaRucica)
+                        ...this.serviceRacunanja.izborMaskica(this.pozicije[i].brojKrila, this.pozicije[i].boja, this.pozicije[i].sigurnosnaRucica, this.pozicije[i].otvaranje, this.pozicije[i].tipSarke)
                       }
         if (this.okov[i].hasOwnProperty('prihvGetribe')){
           this.prihvGetribe = this.okov[i].prihvGetribe
@@ -263,8 +272,8 @@ export class PVCComponent implements OnInit {
       //okretni
       if(this.pozicije[i].nacinOtvaranja == "okretno"){
         if (this.pozicije[i].brojKrila == 1){
-          this.okov[i] = {...this.serviceRacunanja.zaJednokrilniOkretni(this.pozicije[i].visina, this.pozicije[i].otvaranje),
-                          ...this.serviceRacunanja.okretneMaskice(this.pozicije[i].brojKrila, this.pozicije[i].boja, this.pozicije[i].sigurnosnaRucica, this.pozicije[i].visina),
+          this.okov[i] = {...this.serviceRacunanja.zaJednokrilniOkretni(this.pozicije[i].visina, this.pozicije[i].otvaranje, this.pozicije[i].tipSarke),
+                          ...this.serviceRacunanja.okretneMaskice(this.pozicije[i].brojKrila, this.pozicije[i].boja, this.pozicije[i].sigurnosnaRucica, this.pozicije[i].visina, this.pozicije[i].otvaranje, this.pozicije[i].tipSarke),
                           ...this.serviceRacunanja.izaberiOkretnuGetribu(this.pozicije[i].visina),
                         }
           if (this.okov[i].hasOwnProperty('prihvGetribe')){
@@ -277,8 +286,8 @@ export class PVCComponent implements OnInit {
           this.okov[i] = {...this.okov[i], ...this.maliPrihvatnik}
         }
         if (this.pozicije[i].brojKrila == 2){
-          this.okov[i] = {...this.serviceRacunanja.zaDvokrilniOkretni(this.pozicije[i].visina),
-                          ...this.serviceRacunanja.okretneMaskice(this.pozicije[i].brojKrila, this.pozicije[i].boja, this.pozicije[i].sigurnosnaRucica, this.pozicije[i].visina),
+          this.okov[i] = {...this.serviceRacunanja.zaDvokrilniOkretni(this.pozicije[i].visina, this.pozicije[i].tipSarke),
+                          ...this.serviceRacunanja.okretneMaskice(this.pozicije[i].brojKrila, this.pozicije[i].boja, this.pozicije[i].sigurnosnaRucica, this.pozicije[i].visina, this.pozicije[i].otvaranje, this.pozicije[i].tipSarke),
                           ...this.serviceRacunanja.izaberiOkretnuGetribu(this.pozicije[i].visina),
                         }
           if (this.okov[i].hasOwnProperty('prihvGetribe')){
@@ -373,6 +382,7 @@ export class PVCComponent implements OnInit {
         this.pozicija.enable()
         this.pozicija.controls['brojKrila'].disable();
         this.pozicija.controls['otvaranje'].disable();
+        this.pozicija.controls['tipSarke'].disable()
         this.pozicija.controls['sigurnosniKip'].disable();
         this.pozicija.controls['centralnaRingla'].disable();
       }
