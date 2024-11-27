@@ -160,11 +160,11 @@ export class PodiznoKlizniComponent implements OnInit {
       img: this.detaljiPozicije.imgSource,
       kolicina: this.pozicijaSSI.value.kolicina,
       boja: this.pozicijaSSI.value.boja,
-      profiliZaOpt: {
-        profili: this.detaljiPozicije.profZaOpt.racunanja(this.pozicijaSSI.value.sirina, this.pozicijaSSI.value.visina,this.pozicijaSSI.value.kolicina).profili,
-        gume: this.detaljiPozicije.profZaOpt.racunanja(this.pozicijaSSI.value.sirina, this.pozicijaSSI.value.visina,this.pozicijaSSI.value.kolicina).gume,
-        prateci: this.detaljiPozicije.profZaOpt.racunanja(this.pozicijaSSI.value.sirina, this.pozicijaSSI.value.visina,this.pozicijaSSI.value.kolicina).prateci
-      }
+     // profiliZaOpt: {
+        //profili: this.detaljiPozicije.profZaOpt.racunanja(this.pozicijaSSI.value.sirina, this.pozicijaSSI.value.visina,this.pozicijaSSI.value.kolicina).profili,
+        //gume: this.detaljiPozicije.profZaOpt.racunanja(this.pozicijaSSI.value.sirina, this.pozicijaSSI.value.visina,this.pozicijaSSI.value.kolicina).gume,
+        //prateci: this.detaljiPozicije.profZaOpt.racunanja(this.pozicijaSSI.value.sirina, this.pozicijaSSI.value.visina,this.pozicijaSSI.value.kolicina).prateci
+      //}
       
     }
 
