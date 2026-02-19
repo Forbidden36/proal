@@ -440,7 +440,7 @@ export class IzracunavanjaAlService {
       }
     } else {
         if(boja === 'belo'){
-        rucicaAL = {'ITAL340B-SIG': 1}
+        rucicaAL = {'ITAL340BSIG': 1}
       } else if (boja === 'braon'){
         rucicaAL = {'ITAL340BRSIG': 1}
       } else if (boja === 'sivo'){

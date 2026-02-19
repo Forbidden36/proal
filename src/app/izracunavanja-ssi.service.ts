@@ -16,7 +16,7 @@ export class IzracunavanjaSSIService {
       getriba = {184307: v+h}
     } else if (b > 1800 && b < 2101){
       getriba = {184313: v+h}
-    } else if (b > 2100 && b < 2401){
+    } else if (b > 2100 && b < 2501){
       getriba = {184319: v+h}
     } else {
       getriba = {184325: v+h}
