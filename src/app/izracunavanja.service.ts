@@ -800,7 +800,7 @@ export class IzracunavanjaService {
             nagibni = {1083250: 2, 1134361: 2, 1134364: 2, 1083268: 2, 'ITAL340CSIG': 1, 1099152: 2}
           }
         } else {
-          nagibni = {1083250: 2, 1087796: 2, 1077297: 2, 1083268: 2, 'ITAL340CSIG': 1, 1099152: 2}
+          nagibni = {1083250: 2, 1087796: 2, 1087797: 2, 1083268: 2, 'ITAL340CSIG': 1, 1099152: 2}
         }   
       } else if (b > 1600){
         if (boja == 'belo'){
